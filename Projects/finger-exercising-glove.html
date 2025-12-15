@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="../index.html">Nikhil Murty</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="../index.html">Home</a></li>
+											<li><a href="projects.html">Projects</a></li>
+											<li><a href="../elements.html">CV</a></li>
+
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<article id="main">
+						<header>
+							<h2>Finger Exercising Glove</h2>
+							<p>A device meant to help restore proper hand function</p>
+						</header>
+						<section class="wrapper style5">
+							<div class="inner">
+
+								<h3>Background</h3>
+								<p><span class="image left"><img src="../images/glove/training_glove_drawing_side.png" alt="" /></span> This was a project that a friend and I worked on for Principles ofBME Instrumentation at JHU, taught by Nitish Thakor. It was an
+								incredibly fun class because it was 95% designing cool devices. This was the first major design project for the class and my friend and I had maybe 2 nights to work on this. </p>
+
+								<p> We learned that conditions like cerebral palsy or osteoarthritis will greatly reduce hand function, making even basic tasks, like holding an apple, difficult. However, if the patients do a series of isometric hand exercises, they can slowly gain back some hand function 
+									and also can reduce the pain and inflamation caused by this disorder. However, if a patient is not with a physical therapist and tries to do the exercises alone, they could end up improperly doing the exercises and basically 
+									do nothing to help their condition</p>
+
+								<p> There are some training gloves out there that can be used for resistance based training but we had an idea for making a glove that allows the user to focus on sensor based exercise to bring back precise movement control.</p>
+								
+								<hr />
+								<h3>The idea</h3>
+								<p><span class="image right"><img src="../images/glove/training_glove_drawing.png" alt="" /></span>We thought of building a glove that can track the bending of the fingers and the force that they apply to an object. </p>
+									
+								<p>We would do this by adding flex sensors on the outsides of the fingers on the glove to measure the finger bend and we added force sensors to the tips of the fingers to see how strongly the fingers were pushing onto an object.  </p>
+
+								<p> A Teensy 3.2 microcontroller would read the sensors and stream the data to a computer over serial to log the finger positions. 
+									A rgb LED would act as the user feedback to let the user know they have moved the fingers to the correct position or applied the right amount of force. A reset button would also be there to get the user's 
+									baseline hand position.</p>
+								
+								<p> The system worked by saving the "zero" position of the fingers and forces whenever the the reset button was pressed. Then any finger bends or forces would be compared against the baseline. If a bend or force passed a certain
+									threshold for a movement (like picking up an object with the pointer finger and thumb) then the corresponding lights would light up. </p>
+
+								<hr />
+
+								<h4>Implementation</h4>
+								<p> We ended up getting a cheap, knitted glove off of amazon. This made it easier to route our wires because we could then physically "sew" the wires into the glove. I wanted to use conductive thread to make the sewing easier
+									but it did not come in time so we had to go with the thinnest wire I could find in the BME design lab. </p>
+
+									<div class="row">
+										<div class="col-6">
+											<img src="../images/glove/glove_back.png" alt="" style="width: 100%; height: 400px; object-fit: contain; display: block;" />
+										</div>
+										<div class="col-6">
+											<img src="../images/glove/glove_front.png" alt="" style="width: 100%; height: 400px; object-fit: contain; display: block;" />
+										</div>
+									</div>
+
+								<p></p>
+
+								<p> It does look a little rough around the edges but it was surprisingly comfortable to wear! The sensors were held onto the glove with a combination of thread and hot glue, but they stayed surprisingly in place. The circuit board 
+									didn't interfere with any movement.</p>
+
+								<video autoplay loop muted playsinline style="display: block; margin: 0 auto;">
+									<source src="../images/glove/glove_in_use.mp4" type="video/mp4">
+								</video>
+
+								<p></p>
+
+								<p> The glove ended up working great! We got a lot of interest from the professors and class for what we built. I actually continued playing with the glove to see if I could try and gamify the exercises by taking the serial data 
+									and porting it to a game of some sort. This would turn the glove into a sort of controller (like the ill fated Nintendo Powerglove). I ended up getting distracted with the endless work of grad school and had to put the idea on pause. It definitely could be something
+									to look into now that I have more time...
+								</p>
+							</div>
+						</section>
+					</article>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/nikhil-murty" target="_blank" style="font-size: 18px;">LinkedIn</a></li>
+							<li><a href="https://github.com/nikhilmurty" target="_blank" style="font-size: 18px;">GitHub</a></li>
+							<li><a href="mailto:nikhilsanjaymurty@gmail.com" style="font-size: 18px;">Email</a></li>
+						</ul>
+
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>
