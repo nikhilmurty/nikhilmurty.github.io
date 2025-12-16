@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="../index.html">Nikhil Murty</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="../index.html">Home</a></li>
+											<li><a href="projects.html">Projects</a></li>
+											<li><a href="../elements.html">CV</a></li>
+
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<article id="main">
+						<header>
+							<h2>Self Balancing Robot</h2>
+							<p>That's all it does</p>
+						</header>
+						<section class="wrapper style5">
+							<div class="inner">
+
+								<div class="row">
+									<div class="col-12">
+										<img src="../images/self_balancing_bot.jpg" alt="" style="object-fit: contain; display: block; width: 90%; margin-bottom: 30px;" />
+									</div>
+								</div>
+
+
+								<h3>Background</h3>
+								<p> Ok this project is not that impressive when you look at it, but overall I just had a lot of fun playing around with PID control and watching this little guy fall a bunch. 
+									The project was one of the first ones for Mechatronics taught by Dr. Jeremy Brown and was meant to be more of an intro project. It ended up getting pretty competitive with all of the class trying to get their bots to stand the longest.  </p>
+
+								<hr />
+								<h3>The Design</h3>
+								<p> The way we designed the bot was that we used the gyroscope on the imu to get its orientation, 2 DC motors and an H-bridge, an Arduino Uno, and 2 9V batteries. </p>
+									
+								<p>A stacking chassis was designed that allowed for all the components to be kept near the center of the bot. The arduino and IMU were places in the center of the middle part of the chassis to keep the center of gravity low and allow for more
+									accurate IMU readings. We cut the chassis out of acyrilic using a laser cutter and mounted the different components. We kept the batteries on the top and placed them in such a way for them to work as a counterweight. </p>
+								
+								<p> The code to run it involved setting a zero point by holding the position we wanted to keep the robot in and saving the orientation. Then, when the bot was let go, the imu orientation would be read and compared to the zero position.
+									The error between the two would then be sent to the PD controller which would then command the motors to go forward or backwards and set the speed using pwm. </p>
+
+								<hr />
+
+								<h4>Results</h4>
+								
+
+								<p></p>
+
+								<video autoplay loop muted playsinline style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+									<source src="../images/self_balancing_bot_vid.mp4" type="video/mp4">
+								</video>
+
+								<p></p>
+
+								<p> The bot worked and it was able to stand longer than the required 5 seconds! However, the center of gravity wasn't really in the center so as you can see, when the robot started moving backwards, it ended up tipping. 
+									Another issue that came up was that the batteries would drain very fast which would reduce power to the motors. I blame that these were reusable 9V batteries that had been through the gauntlet, so they barely could hold a charge. </p>
+							</div>
+						</section>
+					</article>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/nikhil-murty" target="_blank" style="font-size: 18px;">LinkedIn</a></li>
+							<li><a href="https://github.com/nikhilmurty" target="_blank" style="font-size: 18px;">GitHub</a></li>
+							<li><a href="mailto:nikhilsanjaymurty@gmail.com" style="font-size: 18px;">Email</a></li>
+						</ul>
+
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>
