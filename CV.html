@@ -37,46 +37,245 @@
 					</header>
 
 				<!-- Main -->
-					<article id="main">
-						<header>
-							<h2>My Projects</h2>
-							<p>Come check out what I've been working on!</p>
-						</header>
-						<section class="wrapper style5">
-							<div class="inner">
+				<article id="main">
+					<header>
+						<h2>CV</h2>
+						<p>Here's what I've done so far</p>
+					</header>
 
+					<!-- Education Section -->
+					<section class="wrapper style1">
+						<div class="inner">
+							<h3>Education</h3>
+							
+							<h4>M.S.E. in Biomedical Engineering - Johns Hopkins University</h4>
+							<p><em>2019 - 2020</em></p>
+							<p>Relevant coursework: Robot Devices, Kinematics, Design, and Control; Haptic Design; Mechatronics; Biomedical Instrumentation; Surgery for Engineers </p>
 
-								<section>
-									<style>
-										.alt li a {
-											text-decoration: none !important;
-											border-bottom: none !important;
-										}
+							<p>I was very fortunate to participate in a 3+1 program where I was able to take graduate level courses and complete my masters instead of graduating early.
+							</p>
+							
+							<hr />
+							
+							<h4>B.S. in Biomedical Engineering - Johns Hopkins University</h4>
+							<p><em>2016 - 2020</em></p>
+							<p>Relevant coursework: Control Systems; Robot Sensors/Actuators; Circuits; Build an Imager; Biomedical Data Science; Rehabilitation Engineering</p>
+							<p>Activities: Treasurer-Theta Tau Professional Engineering Fraternity, Hopkins Emergency Response Unit, BME Design Teams</p>
+						</div>
+					</section>
 
-										.alt li a:hover {
-											color: #5e42a6;
-											border-bottom: 2px solid #5e42a6 !important;
-										}
-									</style>
+					<!-- Experience Section -->
+					<section class="wrapper style4">
+						<div class="inner">
+							<h3>Experience</h3>
+							
+							<h4>Mechatronics Engineer - <a href="https://lazamedical.com/" target="_blank">Laza Medical</a></h4>
+							<p><em>Oct 2024 - Present | Campbell, CA</em></p>
+							<ul>
+								<p> I've been working on the mechatronic design of a robotic platform that can control an ultrasound probe used in heart procedures </p>
+							</ul>
+							
+							<hr />
+							
+							<h4>Robotics Engineer - <a href = "https://www.cellularvehicles.com/technology" target = "_blank"> Cellular Vehicles</a></h4>
+							<p><em>Oct 2023 - Oct 2024 | Palo Alto, CA</em></p>
+							<ul>
+								<p> During my time at Cellular Vehicles, I led the mechatronic and software development of the Odyssey system, a robot that conducts the "last mile" step of preparing cell therapies for patient administration.
+									I designed the PCBs in Fusion 360 for sensor readings, actuator control, and heater control for the thawing modules. I also worked with the suppliers to have the PCBAs assembled. 
+									I also wrote the firmware that controlled the sensors and actuators in C and C++ based off of G-code commands. I even wrote a python GUI that would send out the
+									specific instructions for each different cell therapy that also would save logs that could be used for remote debugging.
+								</p>
 
-									<div class="row">
-										<div class="col-12 col-12-medium">
-											<ul class="alt" style="font-size: 1.5em; padding: 20px;">
-												<li><a href="robot-bartender.html">M.O.E. the Robot Bartender</a></li>
-												<li><a href="skin-for-robots.html">Skin for Robots</a></li>
-												<li><a href="haptic-feedback.html">Haptic Feedback Device for Prosthetic Hands</a></li>
-												<li><a href="labyrinth-robot.html">Labyrinth Navigating Robot</a></li>
-												<li><a href="self-balancing-robot.html">Self Balancing Robot</a></li>
-												<li><a href="finger-exercising-glove.html">Finger Exercising Glove</a></li>
-												<!-- <li><a href="algae-robot.html">Algae Cleaning Robot</a></li> -->
-											</ul>
-										</div>
-									</div>
-								</section>
+								<p>	
+									Using Solidworks, I designed some parts of the robot and worked on machining them. I actually built the first iterations of the Odyssey that we sent
+									for pilot testing.
+								</p>
+									
+								<p> I also worked on the development of a <a href="#patents">microfluidic chip </a>that allowed the robot to safely separate the cells from the waste liquid 
+									and also concentrate them.
+									 
+								</p>
+							</ul>
+							
+							<hr />
+							
+							<h4>Systems Integration Engineer - <a href = "https://thenext.jnjmedtech.com/"> Johnson and Johnson </a></h4>
+							<p><em>Mar 2022 - May 2023 | Santa Clara, CA</em></p>
+							<ul>
+								<p> At J&J I was a part of the Robotics and Digital Solutions group. My team was working on digital solutions to help with robotic and manual surgery.
+									The first main project was the digital hub, a computer that could add a sort of HUD over a surgeon's laparoscopic feed feed and give them useful information.
+									I worked on the hardware and a little on the manufacturing side side of the project, working on building the first few production systems and also helping diagnose
+									any issues with the builds.
+								</p>
 
+								<p> The other project that I mainly worked on was the development of an <a href="#patents">algorithm that determines the temperature of an ultrasonic blade</a>. I was able to make
+									two algorithms, one that can determine the temperature of the tool using the resonant frequency of the tool and another that can determine what media the
+									tool is in (air, liquid, or tissue) that also helped determine the cooling profile. These algorithms were developed in MATLAB and Python and I also made a
+									framework that allowed us to pull the lab collected temperature data from an SQL database, run the different algorithms, and compare the results against each other. 
+								</p>
+								
+							</ul>
+							
+							<hr />
+							
+							<h4>R&D Mechatronics Engineer - <a href = "https://arl.devcom.army.mil/">Army Research Laboratory </a></h4>
+							<p><em>Sep 2020 - Mar 2022 | Aberdeen Proving Ground, MD</em></p>
+							<ul>
+								<p> My first job out of school was at the ARL, specifically the Advanced Manufacturing team. My main project was working on 3 dimensional PCBs
+									that could be added onto munitions to get trajectory information. My secondary project, which ended up taking much more of my time was on
+									developing a 6-axis robot arm 3D printer that could use the special print-heads designed by the teams to help manufacture or even repair
+									parts such as armor in the field for the army. I even wrote a review paper on the use of multi-robot additive manufacturing. 
+
+								</p>
+							</ul>
+							
+							<hr />
+							
+							<h4>Graduate Student Researcher - <a href = "https://li.me.jhu.edu/">Terradynamics, Laboratory for Computational Sensing and Robotics</a></h4>
+							<p><em>May 2019 - Sep 2020 | Baltimore, MD</em></p>
+							<ul>
+								<p> While I was in the graduate part of my 3+1 program at JHU, I worked in the Terradynamics lab, advised by Dr. Chen Li. The lab's goal was to
+									learn how animals move and translate that to robotics. We had many robots that were based on animals like snakes, lizards, and even cockroaches.
+									My research was mainly on the snake robots.
+								
+								</p>
+
+								<p> I worked on developing a <a href="Projects/skin-for-robots.html"> low-cost pressure mapping sensor </a> that could act as a skin for the snake robot
+									so that the robot could know more about the terrain that it was on. I even worked on redesigning parts of the robot in Solidworks to help with adding
+									skin onto it. I also worked on a Python/Matlab code that allowed for us to visualize the data coming from the sensor in real-time.
+
+								</p>
+
+							
+							</ul>
+							
+							<hr />
+							
+							<h4>Emergency Medical Technician - <a href = "https://heru.jhu.edu/">Johns Hopkins Emergency Response Organization</a></h4>
+							<p><em>Nov 2017 - Dec 2019 | Baltimore, MD</em></p>
+							<ul>
+								<p> I joined HERO my sophomore year of college. I trained and got my Nationally Registered EMT license in February 2018 and from then on, ran 
+									shifts as an EMT on campus. We would act as the first responders to emergencies on and around the campus and would provide basic life support
+									until paramedics would arrive. I also got to do ride alongs with Baltimore paramedics and even ran a couple of Stop the Bleed courses at local 
+									schools! 
+
+								</p>
+							</ul>
+							
+							<hr />
+							
+							<h4>Design Studio Teaching Assistant - Johns Hopkins Department of Biomedical Engineering</h4>
+							<p><em>Sep 2018 - May 2019 | Baltimore, MD</em></p>
+							<ul>
+								<p> I took a part time job as a teaching assistant for the BME Design Lab, a sort of maker space for BME students to work on any project they wanted.
+									We had everything a maker could need: a basic machine shop, 3D printers, soldering stations and electrical test tools, sewing machines and everything
+									in between. I worked on teaching students how to use the different tools and machines and would help upkeep the machines as well. 
+
+								</p>
+							</ul>
+							
+							<hr />
+							
+							<h4>Co-Founder, Engineering Lead - Osteocast</h4>
+							<p><em>Mar 2017 - May 2019 | Baltimore, MD</em></p>
+							<ul>
+								<p> I joined the BME Design Teams program where teams would work to help solve needs that doctors at Johns Hopkins Hospital would bring to us. My team
+									chose the project of making a better version of a cast for forearm fractures. We worked on making a waterproof and remoldable cast that would make life easier
+									for the wearers and other key stakeholders by allowing for easier administration and repair while also being cheaper. I helped come up with the design and 
+									started the V&V testing of the cast. We even maintained design history files in preparation for FDA submission.
+
+								</p>
+
+							</ul>
+							
+							<hr />
+							
+							<h4>Algorithms Engineering Intern - <a href = "https://www.uc3m.es/ss/Satellite/GruposInvestigacion/en/Detalle/Organismo_C/1418660804374/1371325143833/Biomedical_Imaging_and_Instrumentation_Group">Universidad Carlos III de Madrid</a></h4>
+							<p><em>May 2017 - Aug 2017 | Madrid, Spain</em></p>
+							<ul>
+								<p> I did a summer internship with the Biomedical Imaging and Instrumentation Group at the Universidad Carlos III de Madrid as a part of a research abroad
+									program. My work was in developing an image processing algorithm in MATLAB that would improve the CT scans of animals by about 46%. This was done by
+									removing the frames where the animal was breathing from the overall volume of images because they would end up blurring those areas. 
+
+								</p>
+							</ul>
+						</div>
+					</section>
+
+					
+
+					<!-- Skills Section -->
+					<section class="wrapper style3">
+						<div class="inner">
+							<h3>Skills</h3>
+						
+							<div class="row">
+								<div class="col-6 col-12-medium">
+									<h4>Software</h4>
+									<ul>
+										<li>Python </li>
+										<li>C/C++</li>
+										<li>MATLAB</li>
+										<li>Git, Linux</li>
+										<li>Java</li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-medium">
+									<h4>Robotics</h4>
+									<ul>
+										<li>Robot Arms, Robot Kinematics</li>
+										<li>Control Systems</li>
+										<li>Haptics</li>
+										<li>Teleoperation</li>
+										<li>Simulation</li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-medium">
+									<h4>Mechatronics</h4>
+									<ul>
+										<li>PCB & Circuit Design (Fusion 360, KiCAD)</li>
+										<li>Hardware Design</li>
+										<li>Microcontrollers/Raspberry Pi</li>
+										<li>Sensors/Actuators</li>
+										<li>Oscilloscopes</li>
+										<li>EtherCAT, SPI, I2C</li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-medium">
+									<h4>General</h4>
+									<ul>
+										<li>CAD (SolidWorks, Onshape)</li>
+										<li>3D Printing</li>
+										<li>Rapid Prototyping</li>
+										<li>Machining</li>
+										<li>Laser Cutter, Water Cutter</li>
+										<li>Systems Integration</li>
+										<li>GD&T</li>
+									</ul>
+								</div>
 							</div>
-						</section>
-					</article>
+						</div>
+					</section>
+
+					<!-- Patents Section -->
+					<section class="wrapper style5" id="patents">
+						<div class="inner">
+							<h3>Patents</h3>
+							
+							<h4><a href="https://patents.google.com/patent/WO2025213101A1" target="_blank">Microfluidic systems, devices, and kits for suspension therapy preparation and/or infusion and methods for use</a></h4>
+							<p><em>Patent No. WO2025213101A1 | 2025 (Pending)</em></p>
+							<p>A microfluidic device for processing therapeutic suspensions (such as CAR T-cell therapies) using microfluidic inertial focusing to separate, wash, and concentrate therapeutic agents from waste media prior to patient infusion.</p>
+							
+							<hr />
+							
+							<h4><a href="https://patents.google.com/patent/WO2024201158A1" target="_blank">Method and system for estimating temperature of an end effector of an ultrasonic instrument</a></h4>
+							<p><em>Patent No. XXXXXXX | 2024 (Pending)</em></p>
+							<p>A surgical system that estimates the temperature of an ultrasonic surgical blade in real-time using resonance frequency measurements and temperature models during both heating and cooling cycles.</p>
+						</div>
+					</section>
+
+				</article>
+
 
 				<!-- Footer -->
 				<footer id="footer">
