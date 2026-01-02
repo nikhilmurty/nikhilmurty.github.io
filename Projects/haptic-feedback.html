@@ -40,71 +40,68 @@
 				<!-- Main -->
 					<article id="main">
 						<header>
-							<h2>labyrinth Navigating Robot</h2>
-							<p> It just wants to go home</p>
+							<h2>Haptic Feedback Device for Prosthetic Hands</h2>
+							<p> How do you convert the sense of touch into something else?</p>
 						</header>
-						<section class="wrapper style5">
+						<section class="wrapper style4">
 							<div class="inner">
 
 								<h3>Background</h3>
-								<p> This was also a project for Mechatronics with Dr. Jeremy Brown. The goal of the project was to make a robot that could navigate
-								its way through a maze correctly without getting lost or crashing into walls. </p>
+								<p> This was for a semester-long project for Haptics for Human-Robot Interfaces with Dr. Jeremy Brown. The goal of the class was to come up with a useful haptic feedback device using
+									what we had learned in class. </p>
 
-								<p> The maze was set up in such a way that each wall would have a colored post-it that signified which direction the robot would have to go. The robot would have to go left, right, or turn around. It was not allowed to crash into walls
-									and it couldn't skip any post its. The maze would be set the day of so that it couldn't be hard coded into the robot. Also, we were only allowed to use 1 of any given sensor and the robot couldn't be wider or taller than 20cm.
+								<p> As a team, we decided to look into finding a way to regain the sense of touch. We found that people with peripheral neuropathy (a condition where people lose sensory function in their hands and feet)
+									and those with prosthetics have a hard time gripping objects because they do not have the force feedback to maintain a grip. So, tasks like holding a cup can be difficult because
+									they do not know how much force to apply to the task. They will either squeeze too hard and risk breaking the object or grip too weakly and it will fall out of their hands. To account
+									for this, they need to visualize what they are holding at all times and get visual feedback that they are gripping hard enough.
+								</p>
+
+								<p> One problem is that humans have a lot of nerve endings on their fingers, which means that they can discern much finer things. However, there isn't another place
+									on the body to relay this sensation to other than your tongue and that alone might be a weird feeling. So, how do we go about translating the sensation of touch
+									to the user?
+
+								</p>
+
+								<hr />
+								<h3>The Idea</h3>
+
+								<p> What if we converted the sensation of touching something into a squeeze on the arm? The arm has some touch receptors, not a ton, but if you squeeze it, you can feel varying levels of force.
+									So we came up with the idea of devloping a coversion of the force exerted by the fingers into a squeeze on the arm. 
+
 								</p>
 
 								<hr />
 								<h3>The Design</h3>
-
-								<p> We decided to go with using a PixyCam camera, an Arduino Uno, 2 DC motors, an ultrasonic sensor, and an IR distance sensor. </p>
-
-								<p> The PixyCam is a cool color camera that can interface with an Arduino Uno and can send low resolution images to the Arduino. The ultrasonic sensor was placed in the front to read how far the robot was from the wall. A single IR
-									distance sensor was placed on the left side of the robot to read the distance the robot was from the walls. The derivative of the IR sensor values would help show if the robot was moving closer or further from the walls and allow 
-									it to stay parallel to the walls. 
+								
+								<p> The design is actually pretty simple. A force sensor is added to the index and middle fingers as well as the thumb. They are then wired to an
+									armband that houses the microcontroller and stepper motor. The stepper motor has a spool of string wound to it that is connected to the
+									band of the armband. When the user squeezes something, the armband will tighten a proportional amount. 
 								</p>
 									
-								<p>Here's what it looked like:</p>
-								<div class="row">
-									<div class="col-12">
-										<img src="../images/labyrinth/robot.jpg" alt="" style="object-fit: contain; display: block; width: 90%; margin-bottom: 30px;" />
-									</div>
-								</div>
-
-								<p>If there were any points for style, we definitley would have been last. Sadly, we were sleep deprived grad students, so a visually appealing design and cable management went out the window.  </p>
-
-								<hr />
-								<h3>How it worked</h3>
-
-								<p> Here is a state diagram for robot: </p>
-
-								<p> <span class="image"><img src="../images/labyrinth/state_machine.jpg" alt="" /></span></p>
 								
-								<p> The robot would start by checking the ultrasonic sensor and determining its distance from a wall. If it wasn't close to a wall yet, it would start moving forward.</p> 
 								
-								<p>While moving, the camera would try to locate a colored post it. 
-								If a color tag was found, the robot would move in such a way so that the post-it would be in the center of the camera's view, which would put the robot in the center of the path. If a color tag was not available, the derivative of the IR sensor signal was used as the metric. 
-								The robot would adjust its movement by applying a bias to one of the motors calculated using a PD controller to keep the robot parallel to the walls. </p>
-								
-								<p> Once the robot reached a wall, it would move around to see if it sees the post-it, read the color, and then follow the direction it needs to turn. Then the robot would continue forward and on to the next tag. </p>
-
+				
 								<hr />
 
-								<h4>Implementation</h4>
-								<p> The state machine worked! The little bot was able to navigate itself through the maze. Unfortunately, I couldn't record the actual demo of the bot, but here is a video of one of the tests we did with it on a fake maze.</p>
+								<h3>Testing</h3>
+								<p> Since there wasn't anyone we knew who could actually test out our device, we had to get a little more creative with the design. We could use
+									people who still had their sense of touch by taking away their proprioceptive feedback. One idea was to use a rubber sleeve over the finger 
+									but another idea was to get a fake hand and have the user hold it. This would "take away" their sense of touch. The next thing was that we 
+									had to take away was their vision, this was easily done by making them move the hand around inside of a covered box. This way, they couldn't
+									visualize what they were touching and instinctively modulate the amount of force they used.
+								</p>
 
+								<p> We then put items in the box with varying levels of stiffness and had the users try to feel around the object. For something soft like a stress ball,
+									they were able to feel a light squeeze but for something harder like an apple, they had to press a little harder and felt a harder squeeze. People lined
+									up to try it out and even our professor had fun with it. We even got featured on the hopkins engineer site for our project!
+								</p>
 
-								<video autoplay loop muted playsinline style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
-									<source src="../images/labyrinth/robot_vid_pass.mp4" type="video/mp4">
+								<p>Here's what the prototype looked like in action:</p>
+
+								<video autoplay loop muted playsinline style="display: block; margin: 0 auto; max-width: 90%; height: auto;">
+									<source src="../images/haptic/haptic_device.mp4" type="video/mp4">
 								</video>
 
-								<p></p>
-
-								<p> In this video, you can see that the robot would start drifting to the left. It turns out that the same issue that we had with the self balancing bot applied here too. That is, the 9V batteries couldn't hold a charge if their
-									lives depended on it. This would make one of the motors weaker and make the robot drift to the left. On the actual demo day, we used new batteries to make sure the robot would survive, and it did! </p>
-
-								<p> Only a handful of the robots ended up making it through the maze and our robot did it in less than 2 minutes, which was the fastest time in the class!
-								</p></p>
 							</div>
 						</section>
 					</article>
