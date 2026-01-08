@@ -5,130 +5,406 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title></title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+<head>
+	<title>Skin for Robots - Nikhil Murty</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="../assets/css/noscript.css" />
+	</noscript>
+</head>
 
-				<!-- Header -->
-					<header id="header">
-						<h1><a href="../index.html">Nikhil Murty</a></h1>
-						<nav id="nav">
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../index.html">Nikhil Murty</a></h1>
+			<nav id="nav">
+				<ul>
+					<li class="special">
+						<a href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
 							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
-										<ul>
-											<li><a href="../index.html">Home</a></li>
-											<li><a href="projects.html">Projects</a></li>
-											<li><a href="../CV.html">CV</a></li>
-
-										</ul>
-									</div>
-								</li>
+								<li><a href="../index.html">Home</a></li>
+								<li><a href="projects.html">Projects</a></li>
+								<li><a href="../CV.html">CV</a></li>
 							</ul>
-						</nav>
-					</header>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</header>
 
-				<!-- Main -->
-					<article id="main">
-						<header>
-							<h2>A Skin for Robot</h2>
-							<p> It can feel too, you know</p>
-						</header>
-						<section class="wrapper style4">
-							<div class="inner">
+		<!-- Main -->
+		<article id="main">
+			<header>
+				<h2>Skin for a Search and Rescue Robot</h2>
+				<p>It can feel too.</p>
+			</header>
+			<section class="wrapper style4">
+				<div class="inner">
 
-								<h3>Background</h3>
-								<p> This was also a project for Mechatronics with Dr. Jeremy Brown. The goal of the project was to make a robot that could navigate
-								its way through a maze correctly without getting lost or crashing into walls. </p>
+					<h3>Background</h3>
+					<p><span class="image left"><img src="../images/skin/Terradynamics.jpg"
+								alt="Terradynamics Lab" /></span> This research was conducted at the
+						<strong>Terradynamics Laboratory</strong> (a lab within the Laboratory for Computational Sensing
+						and Robotics), which studies
+						animal locomotion—like cockroaches, snakes, and lizards—to create robots that can navigate
+						complex terrains. My P.I. was Dr. Chen Li.
+					</p>
 
-								<p> The maze was set up in such a way that each wall would have a colored post-it that signified which direction the robot would have to go. The robot would have to go left, right, or turn around. It was not allowed to crash into walls
-									and it couldn't skip any post its. The maze would be set the day of so that it couldn't be hard coded into the robot. Also, we were only allowed to use 1 of any given sensor and the robot couldn't be wider or taller than 20cm.
-								</p>
+					<p> <span class="image right"><img src="../images/skin/snake_movement.jpg" /></span>
+						The lab was developing a segmented snake robot designed for search and rescue. While the robot
+						was excellent at mimicking a snakes movements, even being able to climb stairs, it had a major
+						limitation:
+						<strong>it was blind to what it was touching.</strong>
+					</p>
 
-								<hr />
-								<h3>The Design</h3>
+					<p> The robot could only sense obstacles directly in front of its "head." It had no way of knowing
+						if its body was getting stuck, caught, or pressing too hard against an object. This lack of
+						sensory feedback from the body meant the robot was at constant risk of failure in real-world
+						scenarios.</p>
 
-								<p> We decided to go with using a PixyCam camera, an Arduino Uno, 2 DC motors, an ultrasonic sensor, and an IR distance sensor. </p>
+					<hr style="clear:both;" />
 
-								<p> The PixyCam is a cool color camera that can interface with an Arduino Uno and can send low resolution images to the Arduino. The ultrasonic sensor was placed in the front to read how far the robot was from the wall. A single IR
-									distance sensor was placed on the left side of the robot to read the distance the robot was from the walls. The derivative of the IR sensor values would help show if the robot was moving closer or further from the walls and allow 
-									it to stay parallel to the walls. 
-								</p>
-									
-								<p>Here's what it looked like:</p>
-								<div class="row">
-									<div class="col-12">
-										<img src="../images/labyrinth/robot.jpg" alt="" style="object-fit: contain; display: block; width: 90%; margin-bottom: 30px;" />
-									</div>
-								</div>
+					<h3>Understanding the Problem</h3>
+					<p><span class="image right"><img src="../images/skin/snake_design.jpg"
+								alt="Snake Robot Design" /></span> We needed a way to give the robot a sense of touch.
+						The solution was to develop a "skin"—a sensory layer that could cover the robot's body. </p>
 
-								<p>If there were any points for style, we definitley would have been last. Sadly, we were sleep deprived grad students, so a visually appealing design and cable management went out the window.  </p>
+					<p> The requirements were challenging. The skin needed to be:</p>
+					<ul>
+						<li><strong>Flexible & Extensible:</strong> It couldn't hinder the robot's movement.</li>
+						<li><strong>Robust:</strong> It had to survive sliding over concrete and rubble.</li>
+						<li><strong>Low Cost:</strong> We needed to cover a lot of surface area, plus we didn't have a
+							lot of money.</li>
+						<li><strong>Multi-point Sensing:</strong> It needed to distinguish between a single point of
+							contact and a broad surface.</li>
+					</ul>
 
-								<hr />
-								<h3>How it worked</h3>
+					<hr />
 
-								<p> Here is a state diagram for robot: </p>
+					<h3>Choosing the right sensor</h3>
+					<p>I considered a few different options for the sensing element:</p>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>Sensor Type</th>
+									<th>Cost</th>
+									<th>Complexity</th>
+									<th>Robustness</th>
+									<th>Verdict</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Commercial (Tekscan)</td>
+									<td>High (>$3000)</td>
+									<td>Low</td>
+									<td>Low</td>
+									<td>Too expensive/fragile</td>
+								</tr>
+								<tr>
+									<td>Capacitive</td>
+									<td>Low</td>
+									<td>High</td>
+									<td>Medium</td>
+									<td>Complex fabrication</td>
+								</tr>
+								<tr>
+									<td><strong>Piezoresistive</strong></td>
+									<td>Low </td>
+									<td>Low</td>
+									<td>High</td>
+									<td>Cheap and simple to make</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<p>To keep costs low (under $5 per sensor), I chose a
+						<strong>piezoresistive</strong> sensing approach using a material called
+						Velostat (made by 3M). Velostat decreases in electrical resistance when pressure is applied.
+					</p>
+					<video autoplay loop muted playsinline
+						style="width: 50%; height: auto; margin-bottom: 2em; display: block; margin-left: auto; margin-right: auto;">
+						<source src="../images/skin/1x1.mp4" type="video/mp4">
+					</video>
 
-								<p> <span class="image"><img src="../images/labyrinth/state_machine.jpg" alt="" /></span></p>
-								
-								<p> The robot would start by checking the ultrasonic sensor and determining its distance from a wall. If it wasn't close to a wall yet, it would start moving forward.</p> 
-								
-								<p>While moving, the camera would try to locate a colored post it. 
-								If a color tag was found, the robot would move in such a way so that the post-it would be in the center of the camera's view, which would put the robot in the center of the path. If a color tag was not available, the derivative of the IR sensor signal was used as the metric. 
-								The robot would adjust its movement by applying a bias to one of the motors calculated using a PD controller to keep the robot parallel to the walls. </p>
-								
-								<p> Once the robot reached a wall, it would move around to see if it sees the post-it, read the color, and then follow the direction it needs to turn. Then the robot would continue forward and on to the next tag. </p>
+					<hr />
 
-								<hr />
+					<h3>Sensor Design</h3>
+					<div class="row">
+						<div class="col-12">
+							<span class="image fit"><img src="../images/skin/sensor_layout.jpg"
+									alt="Sensor Graphic" /></span>
+						</div>
+						<div class="col-12">
 
-								<h4>Implementation</h4>
-								<p> The state machine worked! The little bot was able to navigate itself through the maze. Unfortunately, I couldn't record the actual demo of the bot, but here is a video of one of the tests we did with it on a fake maze.</p>
+							<p>I created a grid by layering:</p>
+							<ol>
+								<li>A layer of insulation</li>
+								<li>A bottom layer of parallel conductive threads.</li>
+								<li>A middle layer of Velostat.</li>
+								<li>A top layer of perpendicular conductive threads.</li>
+								<li>Another layer of insulation</li>
+							</ol>
+							<p>The sensing units (the region where the threads cross) had to be separated at a minimum
+								3.5mm, I chose
+								to have about 7mm of separation because we didn't need that high of resolution.
+								Measuring the resistance
+								at the intersection of any row and column gave me the force at that specific point.</p>
+						</div>
+					</div>
+
+					<p><span class="image fit"><img src="../images/skin/reading_visualization.jpg"
+								alt="Reading Visualization" /></span></p>
+
+					<p>Using a multiplexer and a demultiplexer, you can read each sensing unit resistance. All that you
+						would need to do is
+						to apply a voltage to a given row while grounding the other rows. Then you can go down the
+						columns
+						and read the resistance at each intersection. This resistance is directly proportional to the
+						pressure applied to that point.
+					</p>
+
+					<p><strong>Proposed assembly onto the robot:</strong></p>
+
+					<div class="row">
+						<div class="col-12">
+							<span class="image fit"><img src="../images/skin/skin_layout.jpg"
+									alt="Sensor Graphic" /></span>
+						</div>
+					</div>
+					<p>This entire sensor assembly was then encased in <strong>Ecoflex 00-40</strong>, a platinum-cure
+						silicone rubber. This protected the sensor from the elements and provided a grippy surface
+						for the robot to gain traction. Also, since it is very cheap to make, it can easily be replace
+						after it wears down.
+					</p>
+
+					<hr />
+
+					<h3>The Fabrication Struggle</h3>
+					<p>Designing the sensor was one thing; building it consistently was another. The wires had to be
+						perfectly straight and spaced to effectively create a grid. Conductive threads are great because
+						they are very bendy and won't snap like regular wire but they are extremely hard to keep stable.
+					</p>
+
+					<h4>Attempt 1 & 2: The "Wire Apparatus"</h4>
+					<p>My first attempts involved 3D printing frames to hold the wires tensioned. It... didn't go well.
+					</p>
+
+					<div class="row">
+						<div class="col-12">
+							<span class="image fit"><img src="../images/skin/wire_fixture_1.jpg"
+									alt="First Fixture" /></span>
+							<p><em>Version 1: the wires could not stay in place because there were such big gaps.</em>
+							</p>
+						</div>
+						<div class="col-12">
+							<span class="image fit"><img src="../images/skin/wire_fixture_2.jpg"
+									alt="Second Fixture" /></span>
+							<p><em>Version 2: The gaps were gone but putting in wires one at a time was very
+									tedious</em></p>
+						</div>
+						<!-- <div class="col-6">
+							<span class="image fit"><img src="../images/skin/wire_fixture_2_fail.jpg"
+									alt="Fixture Failure" /></span>
+							<p><em>Result: A tangled mess.</em></p>
+						</div> -->
+					</div>
+
+					<p>The wires would bunch up, move, or touch each other. It took nearly 45
+						minutes to make just one bad sensor grid.</p>
+
+					<h4>The Breakthrough: The Pinboard</h4>
+					<p><span class="image left"><img src="../images/skin/pinboard_idea.jpg" alt="Pinboard CAD" /></span>
+						I realized I needed a way to route the wires quickly and keep them under tension without
+						complex weaving. I designed a "pinboard" jig.</p>
+
+					<p>This allowed me to wrap the wire back and forth around pins to create a perfect parallel array in
+						seconds. I could then deposit the silicone, place the Velostat, rotate the jig 90 degrees, and
+						do the second layer.
+					</p>
+
+					<div class="row" style="clear:both;">
+						<div class="col-12">
+							<span class="image fit"><img src="../images/skin/wire_fixture_3.jpg"
+									alt="First Fixture" /></span>
+							<p><em>Version 3: The new pinboard jig allowed for quick and accurate wire routing.</em></p>
+						</div>
+						<div class="col-12">
+							<span class="image fit"><img src="../images/skin/wire_fixture_3_1.jpg"
+									alt="Second Fixture" /></span>
+							<p><em>Version 3.5: I made a way to extend the pinboard to make bigger sensors.</em></p>
+						</div>
+					</div>
 
 
-								<video autoplay loop muted playsinline style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
-									<source src="../images/labyrinth/robot_vid_pass.mp4" type="video/mp4">
-								</video>
+					<hr style="clear:both;" />
 
-								<p></p>
+					<h4>Final Assembly Process</h4>
+					<p>With the new process, production became reliable and fast.</p>
 
-								<p> In this video, you can see that the robot would start drifting to the left. It turns out that the same issue that we had with the self balancing bot applied here too. That is, the 9V batteries couldn't hold a charge if their
-									lives depended on it. This would make one of the motors weaker and make the robot drift to the left. On the actual demo day, we used new batteries to make sure the robot would survive, and it did! </p>
-
-								<p> Only a handful of the robots ended up making it through the maze and our robot did it in less than 2 minutes, which was the fastest time in the class!
-								</p></p>
+					<div class="box alt">
+						<div class="row gtr-50 uniform">
+							<div class="col-12">
+								<span class="image left"><img src="../images/skin/build_1.jpg"
+										alt="Step 1: Winding wires" /></span>
+								<h4>Step 1: Winding the First Layer</h4>
+								<p>Using the custom pinboard jig, conductive wire is wrapped back and forth to create
+									the bottom electrode grid. The pins ensure perfect spacing and tension.</p>
 							</div>
-						</section>
-					</article>
+							<div class="col-12">
+								<span class="image left"><img src="../images/skin/build_2.jpg"
+										alt="Step 2: Base Layer" /></span>
+								<h4>Step 2: Securing the Base</h4>
+								<p>A thin layer of silicone adhesive is applied to smooth out the wires and create a
+									stable base layer for the sensor material.</p>
+							</div>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/nikhil-murty" target="_blank" style="font-size: 18px;">LinkedIn</a></li>
-							<li><a href="https://github.com/nikhilmurty" target="_blank" style="font-size: 18px;">GitHub</a></li>
-							<li><a href="mailto:nikhilsanjaymurty@gmail.com" style="font-size: 18px;">Email</a></li>
-						</ul>
+							<div class="col-12">
+								<span class="image left"><img src="../images/skin/build_3.jpg"
+										alt="Step 3: Adding Velostat" /></span>
+								<h4>Step 3: Adding the Sensor Core</h4>
+								<p>The Velostat piezoresistive sheet—the "meat" of the sandwich—is placed carefully on
+									top of the cured bottom layer.</p>
+							</div>
+							<div class="col-12">
+								<span class="image left"><img src="../images/skin/build_4.jpg"
+										alt="Step 4: The Second Layer" /></span>
+								<h4>Step 4: Cross-Hatching</h4>
+								<p>The jig is rotated 90 degrees. The top layer of wires is wound perpendicular to the
+									first layer to create the intersecting grid points.</p>
+							</div>
 
-					</footer>
+							<div class="col-12">
+								<span class="image left"><img src="../images/skin/build_5.jpg"
+										alt="Step 5: Encapsulation" /></span>
+								<h4>Step 5: Encapsulation</h4>
+								<p>The entire assembly is then covered with saran wrap. This encapsulates the
+									wires, protecting them from damage and also allowing for me to see where the sensing
+									units are.</p>
+							</div>
+							<div class="col-12">
+								<span class="image left"><img src="../images/skin/build_6.jpg"
+										alt="Step 6: Protecting the wires" /></span>
+								<h4>Step 6: Final Trimming</h4>
+								<p>Once finished, and the wires were wrapped with an insulating tape to prevent the
+									wires
+									from interfering with each other and then the loops were cut.</p>
+							</div>
+						</div>
+					</div>
 
-			</div>
+					<hr />
 
-		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.scrollex.min.js"></script>
-			<script src="../assets/js/jquery.scrolly.min.js"></script>
-			<script src="../assets/js/browser.min.js"></script>
-			<script src="../assets/js/breakpoints.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
+					<h3>Integration & Results</h3>
+					<p>The final sensors were integrated into the robot's 3D printed shell. I used an <strong>Arduino
+							Mega</strong> to read the sensor grid and send the data to a PC for visualization.</p>
 
-	</body>
+					<div class="row">
+						<div class="col-12">
+							<span class="image fit"><img src="../images/skin/integration.jpg"
+									alt="Skin on Robot" /></span>
+							<p>The skin integrated seamlessly onto the robot segments.</p>
+						</div>
+
+					</div>
+
+					<h4>Data Visualization</h4>
+					<p>I developed a MATLAB interface to visualize the pressure data as a real-time heatmap. This
+						allowed me to "see" what the robot was feeling. It would output the voltages as a heatmap
+						for easier viewing.</p>
+
+					<div class="row">
+						<div class="col-6">
+
+							<span class="image fit"><img src="../images/skin/data.gif" alt="Heatmap GIF" /></span>
+
+						</div>
+						<div class="col-6">
+
+							<span class="image fit"><img src="../images/skin/movement.gif"
+									alt="Robot Movement" /></span>
+
+						</div>
+					</div>
+
+					<h4> Force Calculations</h4>
+
+					<p>To further characterize the sensor, I calcualted the max forces that the sensor could withstand
+						before it stopped acting linearly.
+					</p>
+
+					<div class="row">
+						<div class="col-6">
+							<span class="image fit"><img src="../images/skin/force_readings.jpg"
+									alt="Force Data" /></span>
+
+						</div>
+
+						<div class="col-6">
+							<span class="image fit"><img src="../images/skin/force_calc.jpg" alt="Force Calc" /></span>
+
+						</div>
+					</div>
+
+					<p> I saw that the linear region of the sensor was between 0-1N per sensing unit. We were concerned
+						that
+						the weight of the robot would overload the regions of the sensor that it was laying on. The
+						sensing units
+						(the region where two wires overlapped) had a minimum sensing area of 12.25mm^2 each, so
+						assuming
+						that 10% of the robot was touching the ground at any given point, I calculated that we would be
+						well within
+						the linear region of the sensor.
+					</p>
+
+					<hr />
+					<h3> Conclusion</h3>
+					<p>The final design met all my success criteria: it was robust, sensitive enough to detect
+						obstacles, and cost less than $5 per unit to produce. Unfortunately, the pandemic hit, the lab
+						was closed for awhile, and I graduated
+						so I never got to fully see my work tested on the robot. I was glad to have it integrated and be
+						ready for testing as I was saying my goodbyes.</p>
+
+					<div class="col-12">
+						<span class="image fit"><img src="../images/skin/integrated.png"
+								alt="Integrated Sensor" /></span>
+						<p><em>A fully built robot with the skin attached.</em></p>
+					</div>
+
+				</div>
+			</section>
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.linkedin.com/in/nikhil-murty" target="_blank"
+						style="font-size: 18px;">LinkedIn</a></li>
+				<li><a href="https://github.com/nikhilmurty" target="_blank" style="font-size: 18px;">GitHub</a></li>
+				<li><a href="mailto:nikhilsanjaymurty@gmail.com" style="font-size: 18px;">Email</a></li>
+			</ul>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
 </html>
