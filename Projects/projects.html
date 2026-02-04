@@ -5,101 +5,306 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Projects</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+<head>
+	<title>Projects</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="../assets/css/noscript.css" />
+	</noscript>
+</head>
 
-				<!-- Header -->
-					<header id="header">
-						<h1><a href="../index.html">Nikhil Murty</a></h1>
-						<nav id="nav">
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../index.html">Nikhil Murty</a></h1>
+			<nav id="nav">
+				<ul>
+					<li class="special">
+						<a href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
 							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
-										<ul>
-											<li><a href="../index.html">Home</a></li>
-											<li><a href="projects.html">Projects</a></li>
-											<li><a href="../CV.html">CV</a></li>
-										</ul>
-									</div>
-								</li>
+								<li><a href="../index.html">Home</a></li>
+								<li><a href="projects.html">Projects</a></li>
+								<li><a href="../CV.html">CV</a></li>
 							</ul>
-						</nav>
-					</header>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</header>
 
-				<!-- Main -->
-					<article id="main">
-						<header>
-							<h2>My Projects</h2>
-							<p>Come check out what I've been working on!</p>
-						</header>
-						<section class="wrapper style4">
-							<div class="inner">
+		<!-- Main -->
+		<article id="main">
+			<header>
+				<h2>My Projects</h2>
+				<p>Come check out what I've been working on!</p>
+			</header>
+			<section class="wrapper style4">
+				<div class="inner">
 
 
-								<section>
-									<style>
-										.alt li a {
-											text-decoration: none !important;
-											border-bottom: none !important;
-										}
+					<section>
+						<style>
+							.project-card {
+								background: rgba(255, 255, 255, 0.05);
+								border-radius: 8px;
+								overflow: hidden;
+								transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+								height: 100%;
+								border: 1px solid rgba(255, 255, 255, 0.1);
+								display: flex;
+								flex-direction: column;
+							}
 
-										.alt li a:hover {
-											color: #5e42a6;
-											border-bottom: 2px solid #5e42a6 !important;
-										}
-									</style>
+							.project-card:hover {
+								transform: translateY(-5px);
+								box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+								border-color: #5e42a6;
+							}
 
-									<div class="row">
-										<div class="col-12 col-12-medium">
-											<ul class="alt" style="font-size: 1.5em; padding: 20px;">
-												<!-- <li><a href="robot-bartender.html">M.O.E. the Robot Bartender</a></li> -->
-												<li><a href ="airwrap-holder.html">Dyson Airwrap Holder</a></li>
-												<li><a href="skin-for-robots.html">A Skin for Robots</a></li>
-												<li><a href="haptic-feedback.html">Haptic Feedback Device for Prosthetic Hands</a></li>
-												<li><a href="labyrinth-robot.html">Labyrinth Navigating Robot</a></li>
-												<li><a href="self-balancing-robot.html">Self Balancing Robot</a></li>
-												<li><a href="finger-exercising-glove.html">Finger Exercising Glove</a></li>
-												<!-- <li><a href="osteocast.html">Osteocast, a replacement for fiberglass casts</a></li> -->
-											</ul>
+							.project-card a {
+								text-decoration: none;
+								border-bottom: none;
+								display: flex;
+								flex-direction: column;
+								flex-grow: 1;
+								color: inherit;
+							}
+
+							.project-card .image-container {
+								width: 100%;
+								height: 220px;
+								overflow: hidden;
+								background: #000;
+								position: relative;
+							}
+
+							.project-card .image-container::before {
+								content: "";
+								position: absolute;
+								top: -10px;
+								left: -10px;
+								right: -10px;
+								bottom: -10px;
+								background-image: var(--bg-image);
+								background-size: cover;
+								background-position: center;
+								filter: blur(15px) brightness(0.6);
+								z-index: 1;
+								opacity: 0.8;
+							}
+
+							.project-card img {
+								width: 100%;
+								height: 100%;
+								object-fit: contain;
+								transition: transform 0.5s ease;
+								background-color: transparent;
+								position: relative;
+								z-index: 2;
+							}
+
+							.project-card:hover .image-container::before {
+								transform: scale(1.1);
+								transition: transform 0.5s ease;
+							}
+
+							.project-card:hover img {
+								transform: scale(1.05);
+							}
+
+							.project-card .content {
+								padding: 1.5em;
+								flex-grow: 1;
+								display: flex;
+								flex-direction: column;
+							}
+
+							.project-card h3 {
+								font-size: 1.2em;
+								margin-bottom: 0.5em;
+								color: #ffffff;
+								font-weight: 600;
+								letter-spacing: 0.05em;
+								line-height: 1.3;
+							}
+
+							.project-card p {
+								font-size: 0.9em;
+								margin-bottom: 0;
+								color: rgba(255, 255, 255, 0.7);
+								line-height: 1.6;
+							}
+						</style>
+
+						<div class="row aln-center gtr-uniform gtr-150">
+							<!-- Robot Bartender -->
+							<div class="col-4 col-6-medium col-12-small">
+								<div class="project-card">
+									<a href="robot-bartender.html">
+										<div class="image-container">
+											<img src="../images/Bartender/Bartender.jpg" alt="Robot Bartender" />
 										</div>
-									</div>
-								</section>
-
+										<div class="content">
+											<h3>*In Progress* M.O.E. the Robot Bartender</h3>
+											<p>An automated mixologist designed to serve the perfect drink.</p>
+										</div>
+									</a>
+								</div>
 							</div>
-						</section>
-					</article>
 
-				<!-- Footer -->
-				<footer id="footer">
-					<ul class="icons">
-						<li><a href="https://www.linkedin.com/in/nikhil-murty" target="_blank" style="font-size: 18px;">LinkedIn</a></li>
-						<li><a href="https://github.com/nikhilmurty" target="_blank" style="font-size: 18px;">GitHub</a></li>
-						<li><a href="mailto:nikhilsanjaymurty@gmail.com" style="font-size: 18px;">Email</a></li>
-					</ul>
+							<!-- Plant Watering Alert -->
+							<div class="col-4 col-6-medium col-12-small">
+								<div class="project-card">
+									<a href="plant-watering-alert.html">
+										<div class="image-container">
+											<img src="../images/pic02.jpg" alt="Plant Watering System" />
+										</div>
+										<div class="content">
+											<h3>*In Progress* Plant Watering Alert</h3>
+											<p>Smart monitoring system to keep your plants healthy and hydrated.</p>
+										</div>
+									</a>
+								</div>
+							</div>
 
-				</footer>
-				
-			</div>
-			
+							<!-- Dyson Airwrap Holder -->
+							<div class="col-4 col-6-medium col-12-small">
+								<div class="project-card">
+									<a href="airwrap-holder.html">
+										<div class="image-container">
+											<img src="../images/airwrap/full_setup.jpg" alt="Dyson Airwrap Holder" />
+										</div>
+										<div class="content">
+											<h3>Dyson Airwrap Holder</h3>
+											<p>A custom designed and 3D printed holder for the Dyson Airwrap.</p>
+										</div>
+									</a>
+								</div>
+							</div>
 
-		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.scrollex.min.js"></script>
-			<script src="../assets/js/jquery.scrolly.min.js"></script>
-			<script src="../assets/js/browser.min.js"></script>
-			<script src="../assets/js/breakpoints.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
+							<!-- Skin for Robots -->
+							<div class="col-4 col-6-medium col-12-small">
+								<div class="project-card">
+									<a href="skin-for-robots.html">
+										<div class="image-container">
+											<img src="../images/skin/integrated.png" alt="Skin for Robots" />
+										</div>
+										<div class="content">
+											<h3>A Skin for Robots</h3>
+											<p>Sensitive tactile skin enabling robots to feel their environment.</p>
+										</div>
+									</a>
+								</div>
+							</div>
 
-	</body>
+							<!-- Haptic Feedback -->
+							<div class="col-4 col-6-medium col-12-small">
+								<div class="project-card">
+									<a href="haptic-feedback.html">
+										<div class="image-container">
+											<img src="../images/haptic/Haptics-demos.jpg" alt="Haptic Feedback" />
+										</div>
+										<div class="content">
+											<h3>Haptic Feedback Device</h3>
+											<p>Translating touch sensation for prosthetic hand users.</p>
+										</div>
+									</a>
+								</div>
+							</div>
+
+							<!-- Labyrinth Robot -->
+							<div class="col-4 col-6-medium col-12-small">
+								<div class="project-card">
+									<a href="labyrinth-robot.html">
+										<div class="image-container">
+											<img src="../images/labyrinth/robot.jpg" alt="Labyrinth Robot" />
+										</div>
+										<div class="content">
+											<h3>Labyrinth Navigator</h3>
+											<p>Autonomous robot capable of solving and navigating complex mazes.</p>
+										</div>
+									</a>
+								</div>
+							</div>
+
+							<!-- Self Balancing Robot -->
+							<div class="col-4 col-6-medium col-12-small">
+								<div class="project-card">
+									<a href="self-balancing-robot.html">
+										<div class="image-container">
+											<img src="../images/self_balancing_bot.jpg" alt="Self Balancing Robot" />
+										</div>
+										<div class="content">
+											<h3>Self Balancing Robot</h3>
+											<p>A two-wheeled robot that maintains its balance using PID control.</p>
+										</div>
+									</a>
+								</div>
+							</div>
+
+							<!-- Finger Exercising Glove -->
+							<div class="col-4 col-6-medium col-12-small">
+								<div class="project-card">
+									<a href="finger-exercising-glove.html">
+										<div class="image-container">
+											<img src="../images/glove/Nikhil_glove.png" alt="Finger Glove" />
+										</div>
+										<div class="content">
+											<h3>Finger Exercising Glove</h3>
+											<p>Rehabilitation device designed to help regain finger strength.</p>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</section>
+
+				</div>
+			</section>
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.linkedin.com/in/nikhil-murty" target="_blank"
+						style="font-size: 18px;">LinkedIn</a></li>
+				<li><a href="https://github.com/nikhilmurty" target="_blank" style="font-size: 18px;">GitHub</a></li>
+				<li><a href="mailto:nikhilsanjaymurty@gmail.com" style="font-size: 18px;">Email</a></li>
+			</ul>
+
+		</footer>
+
+	</div>
+
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+	<script>
+		// Creating blurred background effect for project cards
+		document.querySelectorAll('.project-card').forEach(card => {
+			const img = card.querySelector('img');
+			const container = card.querySelector('.image-container');
+			if (img && container) {
+				const src = img.getAttribute('src');
+				container.style.setProperty('--bg-image', `url(${src})`);
+			}
+		});
+	</script>
+
+</body>
+
 </html>
