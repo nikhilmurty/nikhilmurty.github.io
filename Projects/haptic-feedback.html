@@ -5,127 +5,146 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title></title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="../assets/css/noscript.css" />
+	</noscript>
+</head>
 
-				<!-- Header -->
-					<header id="header">
-						<h1><a href="../index.html">Nikhil Murty</a></h1>
-						<nav id="nav">
-							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
-										<ul>
-											<li><a href="../index.html">Home</a></li>
-											<li><a href="projects.html">Projects</a></li>
-											<li><a href="../CV.html">CV</a></li>
+<body class="is-preload">
 
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</nav>
-					</header>
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
 
-				<!-- Main -->
-					<article id="main">
-						<header>
-							<h2>Haptic Feedback Device for Prosthetic Hands</h2>
-							<p> How do you convert the sense of touch into something else?</p>
-						</header>
-						<section class="wrapper style4">
-							<div class="inner">
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../index.html">Nikhil Murty</a></h1>
+			<nav id="nav">
+				<ul>
+					<li><a href="../index.html">Home</a></li>
+					<li><a href="projects.html">Projects</a></li>
+					<li><a href="../CV.html">CV</a></li>
+				</ul>
+			</nav>
+		</header>
 
-								<h3>Background</h3>
-								<p> This was for a semester-long project for Haptics for Human-Robot Interfaces with Dr. Jeremy Brown. The goal of the class was to come up with a useful haptic feedback device using
-									what we had learned in class. </p>
+		<!-- Main -->
+		<article id="main">
+			<header>
+				<h2>Haptic Feedback Device for Prosthetic Hands</h2>
+				<p> How do you convert the sense of touch into something else?</p>
+			</header>
+			<section class="wrapper style4">
+				<div class="inner">
 
-								<p> As a team, we decided to look into finding a way to regain the sense of touch. We found that people with peripheral neuropathy (a condition where people lose sensory function in their hands and feet)
-									and those with prosthetics have a hard time gripping objects because they do not have the force feedback to maintain a grip. So, tasks like holding a cup can be difficult because
-									they do not know how much force to apply to the task. They will either squeeze too hard and risk breaking the object or grip too weakly and it will fall out of their hands. To account
-									for this, they need to visualize what they are holding at all times and get visual feedback that they are gripping hard enough.
-								</p>
+					<h3>Background</h3>
+					<p> This was for a semester-long project for Haptics for Human-Robot Interfaces with Dr. Jeremy
+						Brown. The goal of the class was to come up with a useful haptic feedback device using
+						what we had learned in class. </p>
 
-								<p> One problem is that humans have a lot of nerve endings on their fingers, which means that they can discern much finer things. However, there isn't another place
-									on the body to relay this sensation to other than your tongue and that alone might be a weird feeling. So, how do we go about translating the sensation of touch
-									to the user?
+					<p> As a team, we decided to look into finding a way to regain the sense of touch. We found that
+						people with peripheral neuropathy (a condition where people lose sensory function in their hands
+						and feet)
+						and those with prosthetics have a hard time gripping objects because they do not have the force
+						feedback to maintain a grip. So, tasks like holding a cup can be difficult because
+						they do not know how much force to apply to the task. They will either squeeze too hard and risk
+						breaking the object or grip too weakly and it will fall out of their hands. To account
+						for this, they need to visualize what they are holding at all times and get visual feedback that
+						they are gripping hard enough.
+					</p>
 
-								</p>
+					<p> One problem is that humans have a lot of nerve endings on their fingers, which means that they
+						can discern much finer things. However, there isn't another place
+						on the body to relay this sensation to other than your tongue and that alone might be a weird
+						feeling. So, how do we go about translating the sensation of touch
+						to the user?
 
-								<hr />
-								<h3>The Idea</h3>
+					</p>
 
-								<p> What if we converted the sensation of touching something into a squeeze on the arm? The arm has some touch receptors, not a ton, but if you squeeze it, you can feel varying levels of force.
-									So we came up with the idea of devloping a coversion of the force exerted by the fingers into a squeeze on the arm. 
+					<hr />
+					<h3>The Idea</h3>
 
-								</p>
+					<p> What if we converted the sensation of touching something into a squeeze on the arm? The arm has
+						some touch receptors, not a ton, but if you squeeze it, you can feel varying levels of force.
+						So we came up with the idea of devloping a coversion of the force exerted by the fingers into a
+						squeeze on the arm.
 
-								<hr />
-								<h3>The Design</h3>
-								
-								<p> The design is actually pretty simple. A force sensor is added to the index and middle fingers as well as the thumb. They are then wired to an
-									armband that houses the microcontroller and stepper motor. The stepper motor has a spool of string wound to it that is connected to the
-									band of the armband. When the user squeezes something, the armband will tighten a proportional amount. 
-								</p>
-									
-								
-								
-				
-								<hr />
+					</p>
 
-								<h3>Testing</h3>
-								<p> Since there wasn't anyone we knew who could actually test out our device, we had to get a little more creative with the design. We could use
-									people who still had their sense of touch by taking away their proprioceptive feedback. One idea was to use a rubber sleeve over the finger 
-									but another idea was to get a fake hand and have the user hold it. This would "take away" their sense of touch. The next thing was that we 
-									had to take away was their vision, this was easily done by making them move the hand around inside of a covered box. This way, they couldn't
-									visualize what they were touching and instinctively modulate the amount of force they used.
-								</p>
+					<hr />
+					<h3>The Design</h3>
 
-								<p> We then put items in the box with varying levels of stiffness and had the users try to feel around the object. For something soft like a stress ball,
-									they were able to feel a light squeeze but for something harder like an apple, they had to press a little harder and felt a harder squeeze. People lined
-									up to try it out and even our professor had fun with it. We even got featured on the hopkins engineer site for our project!
-								</p>
+					<p> The design is actually pretty simple. A force sensor is added to the index and middle fingers as
+						well as the thumb. They are then wired to an
+						armband that houses the microcontroller and stepper motor. The stepper motor has a spool of
+						string wound to it that is connected to the
+						band of the armband. When the user squeezes something, the armband will tighten a proportional
+						amount.
+					</p>
 
-								<p>Here's what the prototype looked like in action:</p>
 
-								<video autoplay loop muted playsinline style="display: block; margin: 0 auto; max-width: 90%; height: auto;">
-									<source src="../images/haptic/haptic_device.mp4" type="video/mp4">
-								</video>
 
-							</div>
-						</section>
-					</article>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/nikhil-murty" target="_blank" style="font-size: 18px;">LinkedIn</a></li>
-							<li><a href="https://github.com/nikhilmurty" target="_blank" style="font-size: 18px;">GitHub</a></li>
-							<li><a href="mailto:nikhilsanjaymurty@gmail.com" style="font-size: 18px;">Email</a></li>
-						</ul>
+					<hr />
 
-					</footer>
+					<h3>Testing</h3>
+					<p> Since there wasn't anyone we knew who could actually test out our device, we had to get a little
+						more creative with the design. We could use
+						people who still had their sense of touch by taking away their proprioceptive feedback. One idea
+						was to use a rubber sleeve over the finger
+						but another idea was to get a fake hand and have the user hold it. This would "take away" their
+						sense of touch. The next thing was that we
+						had to take away was their vision, this was easily done by making them move the hand around
+						inside of a covered box. This way, they couldn't
+						visualize what they were touching and instinctively modulate the amount of force they used.
+					</p>
 
-			</div>
+					<p> We then put items in the box with varying levels of stiffness and had the users try to feel
+						around the object. For something soft like a stress ball,
+						they were able to feel a light squeeze but for something harder like an apple, they had to press
+						a little harder and felt a harder squeeze. People lined
+						up to try it out and even our professor had fun with it. We even got featured on the hopkins
+						engineer site for our project!
+					</p>
 
-		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.scrollex.min.js"></script>
-			<script src="../assets/js/jquery.scrolly.min.js"></script>
-			<script src="../assets/js/browser.min.js"></script>
-			<script src="../assets/js/breakpoints.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
+					<p>Here's what the prototype looked like in action:</p>
 
-	</body>
+					<video autoplay loop muted playsinline
+						style="display: block; margin: 0 auto; max-width: 90%; height: auto;">
+						<source src="../images/haptic/haptic_device.mp4" type="video/mp4">
+					</video>
+
+				</div>
+			</section>
+		</article>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="https://www.linkedin.com/in/nikhil-murty" target="_blank"
+						style="font-size: 18px;">LinkedIn</a></li>
+				<li><a href="https://github.com/nikhilmurty" target="_blank" style="font-size: 18px;">GitHub</a></li>
+				<li><a href="mailto:nikhilsanjaymurty@gmail.com" style="font-size: 18px;">Email</a></li>
+			</ul>
+
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
 </html>
