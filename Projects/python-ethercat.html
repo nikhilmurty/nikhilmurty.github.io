@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>DIY Ethercat</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="../assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <h1><a href="../index.html">Nikhil Murty</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="../CV.html">CV</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main -->
+        <article id="main">
+            <header>
+                <h2>A Beginner's Guide to Using and Programming EtherCAT</h2>
+                <p>It's really useful!</p>
+            </header>
+            <section class="wrapper style4">
+                <div class="inner">
+                    <h3>Background</h3>
+                    <p> There are many different communication methods in robotics. A commonly used one is CAN/CANopen, found in everything from cars to humanoids. 
+                        However, there is another protocol that is much faster, more flexible, and more efficient: <strong>EtherCAT</strong>. It can run at speeds 
+                        up to 100 Mbps (whereas CAN typically ranges from 1-8 Mbps), allows for any topology, and utilizes more than 90% of the available bandwidth. 
+                    </p>
+
+                    <p> What makes it really interesting is how it handles data. An EtherCAT network sends a single frame through every node in the chain. As the frame 
+                        passes through a slave node, the node identifies the bits meant for it, reads them, and inserts its response back into the frame simultaneously. 
+                        The frame never stops or waits for a node to copy data, it just keeps moving. That’s how it achieves such high speeds. The best way to visualize 
+                        it is to watch this video from the EtherCAT Wikipedia page:
+                    </p>
+
+                    <video id="ethercat-video" autoplay loop muted playsinline
+						style="display: block; margin: 0 auto 30px auto; max-width: 100%; height: auto;">
+						<source src="../images/ethercat/EthercatOperatingPrinciple.mp4" type="video/mp4">
+					</video>
+
+                    <p> There are 2 ways to communicate data over EtherCAT. The first method is called PDO or Process Data Object. This is shown in the video above. You can think of it as the
+                        nervous system of the robot, it is real-time communication for cyclic data. This is where you would read things like current position, current velocity, current, desired position,
+                        etc. PDOs are set during the initialization and don't require addresses  or acknowledgements since everything is agreed upon between the master and slaves from the start.
+                        
+                        The other method is called SDO or Service Data Object. This is a method to read or write a single ethercat register at a time. You would normally use this if you want to
+                        change a config or something else like PID parameters. SDOs require addresses and acknowledgements.
+
+                    </p>
+
+                    <p> So, if EtherCAT is so useful, why isn't it used everywhere? Well, it is notoriously difficult to set up correctly and takes significant effort to 
+                        get working. Unfortunately, there isn't a wealth of beginner-friendly documentation available unless you want to dive deep into Beckhoff's (the 
+                        inventor of EtherCAT) technical manuals. It is equally frustrating if you want to build custom EtherCAT devices, as information on that is 
+                        even scarcer.
+                    </p>
+
+                    <p> I decided to create this guide so that others don't have to go through the same hell I did to get it working.
+                    </p>
+
+                    <hr />
+
+                    <h3> Parts List </h3>
+                    <ul>
+                        <li> A LAN9252 breakout board, I recommend the  <a href = "https://www.bausano.net/en/ethercat-arduino-2">Bausano EasyCAT Shield for Arduino</a></li> 
+                        <li> STM32 Nucleo-64 board (same form factor as an Arduino Uno); a Nucleo-144 also works</li>
+                        <li> Ethernet cable</li>
+                        <li> Ethernet adapter (or a free Ethernet port on your computer)</li>
+                        <li> <a href = "https://github.com/nikhilmurty/python-ethercat">Link to the repo</a></li>
+                        <li> <a href = "https://npcap.com/">Install Npcap</a></li>
+                        <li> <a href = "https://pysoem.readthedocs.io/en/latest/index.html">Install the PySOEM library for Python</a></li>
+                    </ul>
+
+                    <hr />
+                    <h3> Making an EtherCAT Slave</h3>
+                    
+                    <h4>1. Setup</h4>
+                    <p> The LAN9252 communicates with a microcontroller over SPI. If you bought the EasyCAT Shield, it has a 3x2 SPI connector that is used on Arduinos. STM32 Nucleo boards don't have
+                        this connector but luckily, all you need to do is solder 3 jumpers under the board to route the SPI signals to Pin D11 (MOSI), Pin D12 (MISO), and Pin D13 (SCK). There is also a
+                        jumpter on the top side that allows you to pick which CS pin you are using for the LAN chip. I chose Pin D10.
+                    </p>
+
+                    <p><span class="image fit" style="max-width: 50%; margin: 0 auto 2em auto;"><img src="../images/ethercat/EasyCAT_soldered.jpg"
+								alt="EasyCAT soldered" /></span></p>
+
+                    <p> Then, all you need to do is hook the ethernet cable in to the IN port and connect to the board using your mini-usb cable and you can start programming it!</p>
+                    <p><span class="image fit" style="max-width: 50%; margin: 0 auto 2em auto;"><img src="../images/ethercat/EasyCAT+STM32.jpg"
+								alt="EasyCAT soldered" /></span></p>
+
+                    <h4>2. Configuring your PDOs in the LAN9252</h4>
+
+                    <p> Now that everything is set up, we will need to first decide on what we want to send and read over PDOs with this slave. Luckily, Bausano also made a configurator tool to make this 
+                        easy for us! It is called the EasyConfigurator, and I added it to the repo as well in the EthercatSlave folder. Go to the Exe folder and start the EasyCAT_Config_GUI program.
+                    </p>
+
+                    <p><span class="image fit"><img src="../images/ethercat/EasyConfig.jpg"
+								alt="EasyCAT soldered" /></span></p>
+
+                    <p> The GUI looks a little old, but it is great! You can set all the IDs and names, as well as your input and output PDOs. **Reminder:** inputs and outputs are always defined from the perspective
+                        of the EtherCAT Master. To use the GUI: </p>
+                        <ol>
+                            <li>Name and save the project; it will create a .prj file that you can load later and edit the PDOs if you want to</li>
+                            <li>Add all your PDO values and pick the data sizes</li>
+                            <li>Click on the "Create Files" button and the GUI will make a .BIN, .H, and .XML file for you</li>
+                            <li>Click on the "Write EEPROM" button, but <strong>MAKE SURE THAT THERE ARE NO OTHER ETHERCAT DEVICES IN THE CHAIN.</strong> Now, you can write to the EEPROM of the LAN9252 and save these PDO mappings to it. </li>
+                            <li>Copy the .H file to add to the firmware we will now write</li>
+                            <li>You can use the .XML file if you want to read the boards in TwinCAT (Beckhoff's EtherCAT software), but I don't want to download it onto my PC, to be honest</li>
+                        </ol>
+
+                    <p> The project shown above is called slave_1.prj. That project and its associated files are in EasyConfigurator_V4_3\Projects\Pysoem_slave </p>
+
+                    <h4> 3. Writing the STM32 Firmware</h4>
+                    <p> We are almost ready to start using our EtherCAT device, but we just need to program the microcontroller. Bausano has a bunch of code if you want to just use Arduino libraries or
+                        Raspberry Pis, but I wanted to take it a step further and actually use the STM32 toolchain and IDE. Luckily, converting the Bausano Arduino library to work on an STM32 wasn't that hard (with
+                        a little help from Gemini). You can find it in the EthercatSlave_firmware folder. 
+                    </p>
+
+                    <p> This example works with the associated EtherCAT master (which we will get to next), but if you want to have it run on your own slave you will need to: </p>
+                        <ol>
+                            <li>Put the .H file that the EasyConfigurator GUI created into the Core/Inc folder (you can also remove the slave_1.h file). This .h file contains your input and output buffers.</li>
+                            <li> Include the .H file in the Ethercat.h file in the include section at the top</li>
+                            <li> Edit the code in the while loop in main.c to do the tasks you want it to do. Right now, it is just setting the value of test_in to equal test_out</li>
+                        </ol>
+
+                    <p> Now you are ready to build and upload the firmware to your STM32! Once that is done, we can check if it's working using an EtherCAT master program like TwinCAT or maybe our own software... </p>
+
+                    <hr />
+                    <h3> Making an EtherCAT Master</h3>
+                    <p> So, if you want to just test and see if your devices are working, you can use TwinCAT, but if you want to run a robot over EtherCAT, you will need to write some code. Lucky for you, I wrote
+                        an example EtherCAT Master (based on an example from the PySOEM docs) and EtherCAT Slave code in Python. They are both in their corresponding folders in the repo.
+                    </p>
+
+                    <p> There are many different libraries out there, and they will all probably give similar results. There is one caveat though: if you truly want a real-time system, you will need to ensure that
+                        your code is deterministic. For the example I made here, I used Python and the PySOEM library (a Python wrapper of Simple Open EtherCAT Master). While the code cannot be considered real-time, 
+                        it is a great backbone for making engineering software for R&D purposes since you can easily log and analyze data in Python. 
+                    </p>
+
+                    <h4> How to use the Python EtherCAT code</h4>
+
+                    <p> You will need to start by installing Npcap or WinPcap to run EtherCAT communication. You will also need to install PySOEM using pip (`pip install pysoem`).</p>
+                    <p> The code starts by asking for which EtherCAT adapter you are using on your computer. This will take some testing, but you should be able to find it. </p>
+                    <p><span class="image fit" style="max-width: 50%; margin: 0 auto 2em auto;"><img src="../images/ethercat/adapters.jpg"
+								alt="Adapters" /></span></p>
+
+                    <p> Then, the code will output all of the slaves it detected and their names. The master will create a slave object for each slave depending on its name and add it to a list.
+                        This is in the function `init_slaves()`. Right now, I have added a basic slave class template in `ec_slave.py`. The way it works is that it receives a PySOEM slave object from
+                        the master, and then it will read and write to that slave object in separate threads. The master will handle the PDOs, but the PDO data is stored in the PySOEM slave object. To get the 
+                        data from the slave object, you will first need to configure the `InputPDO` and `OutputPDO` classes to fit your .H file that you added to the firmware earlier. Then the read and write
+                        functions can convert them into values that can be understood and used/logged. You also have the ability to do tasks in the `rx_pdo` and `tx_pdo` functions; for now, I am just adding 2
+                        to `test_out`, and the microcontroller should be making `test_in` be the same value. 
+                    </p>
+
+                    <p> Before the PDOs start running, we have to get the slaves into operational states and then we can start the PDO thread. The PDO thread is set to run at 100 Hz and it only handles PDOs.
+                        Right now, the code will just output `test_out` and `test_in` until there is a keyboard interrupt (Ctrl + C). Then the master and slaves will kill the threads and shut down. 
+                    </p>
+                    <p><span class="image fit" style="max-width: 50%; margin: 0 auto 2em auto;"><img src="../images/ethercat/running.jpg"
+								alt="Adapters" /></span></p>
+
+                    <p> Now, you are ready to work with and design your own EtherCAT devices! Hopefully this tutorial can act as a good starting point.</p>
+
+
+
+
+
+
+                </div>
+            </section>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <ul class="icons">
+                <li><a href="https://www.linkedin.com/in/nikhil-murty" target="_blank"
+                        style="font-size: 18px;">LinkedIn</a></li>
+                <li><a href="https://github.com/nikhilmurty" target="_blank" style="font-size: 18px;">GitHub</a></li>
+                <li><a href="mailto:nikhilsanjaymurty@gmail.com" style="font-size: 18px;">Email</a></li>
+            </ul>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../assets/js/jquery.scrolly.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script>
+        document.getElementById('ethercat-video').playbackRate = 3.0;
+    </script>
+
+</body>
+
+</html>
