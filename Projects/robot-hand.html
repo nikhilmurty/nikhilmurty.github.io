@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>A Gesture Controlled Robot Hand - Nikhil Murty</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="../assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <h1><a href="../index.html">Nikhil Murty</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="../CV.html">CV</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main -->
+        <article id="main">
+            <header>
+                <h2>A Gesture Controlled Robot Hand</h2>
+                <p>A journey into my madness of trying to make and control a robotic hand</p>
+            </header>
+            <section class="wrapper style4">
+                <div class="inner">
+                    <h3>Background</h3>
+                    <p>I have always been interested in how our hands work. It is insane to me that we can do anything from working in a construction site to performing brain surgery, all with the same hands.
+                       This interest is actually why I majored in Biomedical Engineering, I wanted to learn how the human body works and how we can use that understanding to improve people's lives. During my time at
+                       Johns Hopkins, I worked a lot on devices to understand how our hands felt things as well as how to improve hand function. I have posted some of these in my projects section. Unfortunately, there
+                       wasn't much of a career in prosthetics when I graduated, so I started working in my second field of interest: surgical robotics. 
+                    </p>
+
+                    <p> However, with the dawn of humanoid robotics and AI recently, I started thinking about robotic hands again. It seems like every one of these humanoid robots has some very dextrous hands and I
+                        decided to learn how they work by trying to make one of my own (to a much simpler degree of course). As for controlling it, I decided I wanted to map my own hand gestures to control the robot hand.
+                    </p>
+
+                    <p>
+                        DISCLAIMER: This project is still a work in progress, but I have made some decent steps forward so I thought I'd share it here. I will continue to update this as I make more progress!
+                    </p>
+
+                <hr />
+                <h3>The Hand</h3>
+                
+                <div style="text-align: center; margin: 2em 0;">
+                    <span class="image"><img src="../images/hand/drawing_3.jpg" alt="Finger Tension Mechanism Diagram" style="max-height: 250px; width: auto;" /></span>
+                </div>
+
+                <p> I decided to go with a tension driven mechanism for the fingers because it seemed cheaper and less complex. The downside is that I won't have a full range of motion for the fingers but at least they will
+                    be able to grab things. It would be cool to have individual motors for each segment, but that would be incredibly expensive. It would be fun to try though...
+                </p> 
+
+
+                <h4>V1</h4>
+
+                <div style="text-align: center; margin: 2em 0;">
+                    <span class="image"><img src="../images/hand/drawing_4.jpg" alt="IGUS Linkage Diagram" style="max-height: 300px; width: auto;" /></span>
+                </div>
+
+                <p>
+                    V1 started with the idea of linking the finger segments together using a snap-fit interlocking pin joint, similar to how an IGUS e-chain carrier works for its linkages. This was designed for an easy build since
+                    it didn't require any additional screws, pins, or fasteners. 
+                </p>
+
+                <div class="row gtr-50" style="margin: 2em 0;">
+                    <div class="col-6">
+                        <img src="../images/hand/V1_assembly.jpg" alt="V1 Assembly" style="width: 100%; height: 400px; object-fit: contain; display: block;" />
+                    </div>
+                    <div class="col-6">
+                        <video autoplay loop muted playsinline style="width: 100%; height: 400px; object-fit: contain; display: block;">
+                            <source src="../images/hand/V1_vid.MOV" type="video/quicktime">
+                            <source src="../images/hand/V1_vid.MOV" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <p>
+                    Unfortunately, this snap fit joint introduced a lot of friction to the system. The motor could barely move it and motion wasn't as smooth as I hoped. Also, pressing the linkages together sometimes led to 
+                    the plastic cracking and/or snapping. The prints also would sometimes come out a little warped, so the mating features would not fit together well, leading to the joints being weak and harder to move.
+                </p> 
+
+                <h4>V2</h4>                
+                
+                <div style="text-align: center; margin: 2em 0;">
+                    <span class="image"><img src="../images/hand/drawing2.jpg" alt="V2 Finger Assembly Drawing" style="max-height: 350px; width: auto;" /></span>
+                </div>
+
+                <p>
+                    I went back to the drawing board for V2, purchasing some small bearings and pins for this iteration. Although working with small bearings can be tedious, a pack of 10 was inexpensive on Amazon. I replaced the snap-fit joint with holes designed to slot a 5mm dowel pin through and made cutouts to press-fit a small 8mm OD bearing. 
+                </p>
+
+                <div style="text-align: center; margin: 2em 0;">
+                    <span class="image"><img src="../images/hand/V2_fingers.jpg" alt="V2 Finger Assembly CAD model" style="max-height: 350px; width: auto;" /></span>
+                </div>
+
+                <p>
+                    I also decided to add hardstops to this version, which were placed at each linkage point. This would allow the fingers to go back to their straight position when we add the spring tensioner. Speaking of
+                    which, I added two M3 through holes at the tips of the finger. One hole was for the driving mechanism, which would allow for the tendon to loop around it. When the tendon was pulled, this would allow for the finger
+                    to close. The other hole was another M3 through hole but this time, it was meant for the spring + tendon mechanism that would pull the fingers back to the open finger position. These all then attached to
+                    a mount with a Dynamixel XL330 servo with a spool attached to it. 
+                </p>
+
+
+
+                <div style="text-align: center; margin: 2em 0;">
+                    <span class="image"><img src="../images/hand/finger.jpg" alt="V2 Physical Finger Assembly" style="max-height: 450px; width: auto;" /></span>
+                </div>
+
+                <p> 
+                    Almost immediately, the motion on this version felt smoother. Pressing the small bearings into their receptacles was a pain, but once I got the hang of it, it got better. 
+                </p>
+
+                <hr />
+                <h3>The Controller</h3>
+                <p> I originally wanted to use a Myo armband that I had lying around to control the robot hand. In college, there was a lab where I got to control a virtual hand using the Myo and it was really cool!
+                     However, the Myo I owned had been collecting dust for too long, and when I tried to boot it up, the battery was dead and I was missing the USB dongle to wirelessly control it. To make things worse,
+                     I tried to take it apart as a final Hail Mary to see if I could replace the battery, but I ended up breaking the communication cable. Since the company has been defunct for some time, that was the 
+                     end of my Myo band :(
+                </p> 
+
+                <div style="display: flex; justify-content: center; align-items: center; height: 300px; margin: 2em 0;">
+                    <img src="../images/hand/myo.jpg" alt="Myo Armband" style="transform: rotate(-90deg); height: 400px; max-width: 100%; object-fit: contain;" />
+                </div>
+
+                <p> However, this led me to the idea of using gesture controls with a video camera. I've worked with OpenCV a bunch and I've seen how good hand models are at estimating hand and finger positions, so I thought
+                    it would be cool to use the camera to control the hand. I decided to go with Google's MediaPipe for the hand tracking because it was fairly lightweight and very responsive (around 15ms per frame). 
+
+                </p>
+
+                </div>
+            </section>
+        </article>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <ul class="icons">
+                <li><a href="https://www.linkedin.com/in/nikhil-murty" target="_blank"
+                        style="font-size: 18px;">LinkedIn</a></li>
+                <li><a href="https://github.com/nikhilmurty" target="_blank" style="font-size: 18px;">GitHub</a></li>
+                <li><a href="mailto:nikhilsanjaymurty@gmail.com" style="font-size: 18px;">Email</a></li>
+            </ul>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/jquery.scrollex.min.js"></script>
+    <script src="../assets/js/jquery.scrolly.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
