@@ -127,8 +127,13 @@
                     Almost immediately, the motion on this version felt smoother. Pressing the small bearings into their receptacles was a pain, but once I got the hang of it, it got better. 
                 </p>
 
+                <h4>V2.5: The Whole Hand</h4> 
+                Now it is time to start building out a whole hand!
+
                 <hr />
                 <h3>The Controller</h3>
+
+                <h4>Initial Idea: EMG sensors</h4>  
                 <p> I originally wanted to use a Myo armband that I had lying around to control the robot hand. In college, there was a lab where I got to control a virtual hand using the Myo and it was really cool!
                      However, the Myo I owned had been collecting dust for too long, and when I tried to boot it up, the battery was dead and I was missing the USB dongle to wirelessly control it. To make things worse,
                      I tried to take it apart as a final Hail Mary to see if I could replace the battery, but I ended up breaking the communication cable. Since the company has been defunct for some time, that was the 
@@ -139,10 +144,28 @@
                     <img src="../images/hand/myo.jpg" alt="Myo Armband" style="transform: rotate(-90deg); height: 400px; max-width: 100%; object-fit: contain;" />
                 </div>
 
-                <p> However, this led me to the idea of using gesture controls with a video camera. I've worked with OpenCV a bunch and I've seen how good hand models are at estimating hand and finger positions, so I thought
-                    it would be cool to use the camera to control the hand. I decided to go with Google's MediaPipe for the hand tracking because it was fairly lightweight and very responsive (around 15ms per frame). 
+                <h4>Pivot: Hand Gesture Tracking via Webcam</h4> 
 
+                <p> This led me to the idea of using gesture controls with a video camera. I've worked with OpenCV a bunch and I've seen how good hand models are at estimating hand and finger positions, so I thought
+                    it would be cool to use the camera to control the hand. I decided to go with Google's MediaPipe for the hand tracking because it was fairly lightweight and very responsive (around 15ms per frame). 
                 </p>
+                
+                <p>
+                    I then wrote the software to handle the gesture tracking and also handle the robot control. The gesture tracking works by having an image capture and processing thread,  image + hand overlay thread,
+                    and robot control thread. The image processing thread will take a frame using OpenCV's VideoCapture class and run the frame through the MediaPipe Hands model. The model will output a result that will
+                    be used by both the robot controller thread and the display function. The display function will use the results to overlay the hand connection points onto the hand in the video. 
+
+                    The robot control code will also ingest the model results and will first calculate the angle between the tip of the finger and the knuckle of the finger. It does this by calculating the vectors from
+                    the wrist to the knuckle and the vector of the knuckle to the finger. Then you calculate the angle between the two using the dot product. This angle is then sent to the dynamixel which then converts
+                    the angle into a robot position and moves the finger. As of now, the controller of finger angle to motor angle needs some work but it does work!
+                </p>
+
+                <div style="display: flex; justify-content: center; align-items: center; height: 800px; margin: 2em 0;">
+                    <video autoplay loop muted playsinline style="height: 800px; max-width: 100%; object-fit: contain; display: block;">
+                        <source src="../images/hand/V2_GestureControl.MOV" type="video/quicktime">
+                        <source src="../images/hand/V2_GestureControl.MOV" type="video/mp4">
+                    </video>
+                </div>
 
                 </div>
             </section>
