@@ -1931,3 +1931,40 @@
 			}
 		}
 	}
+
+/* Custom responsive utility for side-by-side media */
+.autosize-media {
+	width: 100%;
+	height: 400px;
+	object-fit: contain;
+	display: block;
+
+	@include breakpoint('<=small') {
+		height: auto !important;
+	}
+}
+
+/* Slideshow */
+.slideshow-container {
+	position: relative;
+	width: 100%;
+}
+
+.interests-slide {
+	display: none;
+	width: 100%;
+}
+
+.interests-slide.active {
+	display: block;
+}
+
+.fade {
+	animation-name: fade;
+	animation-duration: 1.5s;
+}
+
+@keyframes fade {
+	from {opacity: .4} 
+	to {opacity: 1}
+}

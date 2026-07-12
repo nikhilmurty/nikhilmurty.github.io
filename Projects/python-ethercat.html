@@ -205,8 +205,14 @@
     <script src="../assets/js/breakpoints.min.js"></script>
     <script src="../assets/js/util.js"></script>
     <script src="../assets/js/main.js"></script>
-    <script>
-        document.getElementById('ethercat-video').playbackRate = 3.0;
+     <script>
+        const video = document.getElementById('ethercat-video');
+        if (video) {
+            video.playbackRate = 3.0;
+            video.addEventListener('loadedmetadata', function() {
+                video.playbackRate = 3.0;
+            });
+        }
     </script>
 
 </body>
