@@ -36,7 +36,7 @@
 		<!-- Banner -->
 		<section id="banner">
 			<div class="inner">
-				<img src="/images/nikhil_profile.jpg" alt="Nikhil Murty"
+				<img src="images/Homepage/nikhil_profile.jpg" alt="Nikhil Murty"
 					style="width: 300px; height: 300px; border-radius: 50%; margin: 0 auto 20px auto; display: block; border: 4px solid white; object-fit: cover; object-position: center 35%; image-rendering: crisp-edges;">
 				<h2>Nikhil Murty</h2>
 				<p>A guy that loves building robots </p>
@@ -75,8 +75,8 @@
 		<section id="two" class="wrapper alt style2">
 			<section class="spotlight">
 				<div class="image">
-					<video autoplay loop muted playsinline style="display: block; width: 100%; height: auto; image-rendering: crisp-edges;">
-						<source src="images/EKG.mp4" type="video/mp4">
+					<video autoplay loop muted playsinline style="display: block; width: 100%; margin: 0 auto; aspect-ratio: 4 / 3; object-fit: cover; image-rendering: crisp-edges;">
+						<source src="images/Homepage/LEDs.mp4" type="video/mp4">
 					</video>
 				</div>
 				<div class="content">
@@ -86,24 +86,47 @@
 				</div>
 			</section>
 			<section class="spotlight">
-				<div class="image"><img src="images/glove/Nikhil_glove.png" alt=""
-						style="margin-left: auto; margin-right: auto; max-width: 300px; width: 100%; image-rendering: crisp-edges;" />
+				<div class="image">
+					<video autoplay loop muted playsinline style="display: block; width: 70%; margin: 0 auto; height: auto; image-rendering: crisp-edges;">
+						<source src="images/Homepage/EKG.mp4" type="video/mp4">
+					</video>
 				</div>
 				<div class="content">
 					<h2> A Learner</h2>
 					<p>I love to learn and research new topics. I guess it all started when I broke apart my mom's
 						laptop as a kid to see how it worked. I still like to take things apart BUT I now know how to
 						put them back together.</p>
+
+					<p>The video here is a basic EKG I made and tested on a friend for a class!</p>
 				</div>
 			</section>
 			<section class="spotlight">
-				<div class="image"><img src="images/glove/training_glove_drawing_side.png" alt=""
-						style="margin-left: auto; margin-right: auto; max-width: 400px; width: 100%; image-rendering: crisp-edges;" />
+				<div class="image slideshow-container" id="interests-slideshow">
+					<div class="interests-slide active fade">
+						<img src="images/Homepage/Snowboarding.jpg" alt="Snowboarding"
+							style="margin-left: auto; margin-right: auto; max-width: 400px; width: 100%; image-rendering: crisp-edges; display: block;" />
+					</div>
+					<div class="interests-slide fade" style="display: none;">
+						<img src="images/Homepage/Backpacking.jpg" alt="Backpacking"
+							style="margin-left: auto; margin-right: auto; max-width: 400px; width: 100%; image-rendering: crisp-edges; display: block;" />
+					</div>
+					<div class="interests-slide fade" style="display: none;">
+						<img src="images/Homepage/Cooking.jpg" alt="Cooking"
+							style="margin-left: auto; margin-right: auto; max-width: 400px; width: 100%; image-rendering: crisp-edges; display: block;" />
+					</div>
+					<div class="interests-slide fade" style="display: none;">
+						<img src="images/Homepage/Computer.jpg" alt="Computer"
+							style="margin-left: auto; margin-right: auto; max-width: 400px; width: 100%; image-rendering: crisp-edges; display: block;" />
+					</div>
 				</div>
 				<div class="content">
 					<h2>My Interests</h2>
-					<p> My main interest is in the design of sensors and actuators for cool applications. I also love to
+					<p> My main interest is in the design and control of sensors and actuators for cool applications. I also love to
 						make robots move! </p>
+
+					<p> I don't spend all my time working on robots though. I love being outdoors either biking around the city or snowboarding in Tahoe. I also love cooking and trying new recipes from my travels.
+						At home I will usually play some kind of video game or read a book (fantasy and biographies mostly). 
+					</p>
 				</div>
 			</section>
 		</section>
@@ -180,6 +203,36 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	<script>
+		// Auto-cycling slideshow for My Interests
+		(function() {
+			let slideIndex = 0;
+			const slides = document.querySelectorAll("#interests-slideshow .interests-slide");
+			if (slides.length > 0) {
+				function showSlides() {
+					slides.forEach(slide => {
+						slide.style.display = "none";
+						slide.classList.remove("active");
+						const vid = slide.querySelector("video");
+						if (vid) {
+							vid.pause();
+						}
+					});
+					slideIndex = (slideIndex + 1) % slides.length;
+					const activeSlide = slides[slideIndex];
+					activeSlide.style.display = "block";
+					activeSlide.classList.add("active");
+					const activeVid = activeSlide.querySelector("video");
+					if (activeVid) {
+						activeVid.play().catch(e => console.log("Play failed: ", e));
+					}
+					setTimeout(showSlides, 4000); // Change slide every 4 seconds
+				}
+				// Start cycling after the first delay
+				setTimeout(showSlides, 4000);
+			}
+		})();
+	</script>
 
 </body>
 
