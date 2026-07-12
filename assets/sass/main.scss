@@ -1931,3 +1931,15 @@
 			}
 		}
 	}
+
+/* Custom responsive utility for side-by-side media */
+.autosize-media {
+	width: 100%;
+	height: 400px;
+	object-fit: contain;
+	display: block;
+
+	@include breakpoint('<=small') {
+		height: auto !important;
+	}
+}
