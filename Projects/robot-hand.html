@@ -84,9 +84,9 @@
                         <img src="../images/hand/V1_assembly.jpg" alt="V1 Assembly" class="autosize-media" />
                     </div>
                     <div class="col-6">
-                        <video autoplay loop muted playsinline class="autosize-media">
+                        <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="autosize-media">
+                            <source src="../images/hand/V1_vid.mp4" type="video/mp4">
                             <source src="../images/hand/V1_vid.MOV" type="video/quicktime">
-                            <source src="../images/hand/V1_vid.MOV" type="video/mp4">
                         </video>
                     </div>
                 </div>
@@ -190,10 +190,10 @@
                     the angle into a robot position and moves the finger.
                 </p>
 
-                <div style="display: flex; justify-content: center; align-items: center; height: 800px; margin: 2em 0;">
-                    <video autoplay loop muted playsinline style="height: 800px; max-width: 100%; object-fit: contain; display: block;">
+                <div style="display: flex; justify-content: center; align-items: center; max-height: 600px; margin: 2em 0;">
+                    <video autoplay loop muted playsinline webkit-playsinline preload="auto" style="max-height: 600px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
+                        <source src="../images/hand/V2_GestureControl.mp4" type="video/mp4">
                         <source src="../images/hand/V2_GestureControl.MOV" type="video/quicktime">
-                        <source src="../images/hand/V2_GestureControl.MOV" type="video/mp4">
                     </video>
                 </div>
 
@@ -204,40 +204,40 @@
                 <p> After getting V3 built, I needed to clean up the control code. In the single finger demo above, I had the camera loop sending angle commands directly to the motor, which got messy fast. Scaling up to a full 5 finger hand required a cleaner object oriented setup. I created <code>Finger</code> objects to store min/max angles and motor data, and built conversion functions to map the hand gesture angles from the camera straight into motor target positions. 
                 </p>
                 
-                <div style="display: flex; justify-content: center; align-items: center; height: 600px; margin: 2em 0;">
-                    <video autoplay loop muted playsinline style="height: 600px; max-width: 100%; object-fit: contain; display: block;">
+                <div style="display: flex; justify-content: center; align-items: center; max-height: 500px; margin: 2em 0;">
+                    <video autoplay loop muted playsinline webkit-playsinline preload="auto" style="max-height: 500px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
+                        <source src="../images/hand/PerFinger.mp4" type="video/mp4">
                         <source src="../images/hand/PerFinger.mov" type="video/quicktime">
-                        <source src="../images/hand/PerFinger.mov" type="video/mp4">
                     </video>
                 </div>
 
                 <p> Next came tendon slack and calibration. On startup, the strings are loose and the motors need to be homed. I wrote a simple auto tensioning routine that runs on boot: each motor drives until it hits a current threshold (stall limit) at the joint's hardstop. This automatically pulls the tendons taut while recording the calibrated min and max position limits for each finger.
                 </p>
 
-                <div style="display: flex; justify-content: center; align-items: center; height: 600px; margin: 2em 0;">
-                    <video autoplay loop muted playsinline style="height: 600px; max-width: 100%; object-fit: contain; display: block;">
+                <div style="display: flex; justify-content: center; align-items: center; max-height: 500px; margin: 2em 0;">
+                    <video autoplay loop muted playsinline webkit-playsinline preload="auto" style="max-height: 500px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
+                        <source src="../images/hand/Tensioning.mp4" type="video/mp4">
                         <source src="../images/hand/Tensioning.MOV" type="video/quicktime">
-                        <source src="../images/hand/Tensioning.MOV" type="video/mp4">
                     </video>
                 </div>
 
                 <p> To make finger movement much smoother and more responsive, I upgraded the motor communications to use Dynamixel's <code>GroupSyncRead</code> and <code>GroupSyncWrite</code> commands. Instead of messaging each motor sequentially, GroupSync lets me read and write data to all 5 motors in a single batch call. I also split the software into two dedicated threads: one thread runs MediaPipe tracking to process webcam frames and calculate finger target angles, while a separate high frequency control thread continuously syncs target positions with the motors.
                 </p>
 
-                <div style="display: flex; justify-content: center; align-items: center; height: 600px; margin: 2em 0;">
-                    <video autoplay loop muted playsinline style="height: 600px; max-width: 100%; object-fit: contain; display: block;">
+                <div style="display: flex; justify-content: center; align-items: center; max-height: 500px; margin: 2em 0;">
+                    <video autoplay loop muted playsinline webkit-playsinline preload="auto" style="max-height: 500px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
+                        <source src="../images/hand/Random.mp4" type="video/mp4">
                         <source src="../images/hand/Random.MOV" type="video/quicktime">
-                        <source src="../images/hand/Random.MOV" type="video/mp4">
                     </video>
                 </div>
 
                 <p> I also wanted the hand to yield if it met resistance so it wouldn't crush objects or snap tendons. To do this, I set the motors to Current based Position Control Mode. The motors will hold their target position until a set current limit is reached, at which point they safely yield to external forces. Once released, they spring right back to their commanded position, giving the hand a nice compliant grip!
                 </p>
 
-                <div style="display: flex; justify-content: center; align-items: center; height: 600px; margin: 2em 0;">
-                    <video autoplay loop muted playsinline style="height: 600px; max-width: 100%; object-fit: contain; display: block;">
-                        <source src="../images/hand/Backdrive.MOV" type="video/quicktime">
-                        <source src="../images/hand/Backdrive.MOV" type="video/mp4">
+                <div style="display: flex; justify-content: center; align-items: center; max-height: 500px; margin: 2em 0;">
+                    <video autoplay loop muted playsinline webkit-playsinline preload="auto" style="max-height: 500px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
+                        <source src="../images/hand/Backdrive.mp4" type="video/mp4">
+                        <source src="../images/hand/Backdrive.mov" type="video/quicktime">
                     </video>
                 </div>
 
@@ -245,10 +245,10 @@
                     There are still a few quirks to solve. The thumb doesn't move as much as I'd like (it has more complex degrees of freedom, and the camera sometimes loses track when fingers overlap). The pinky also needs some fine tuning. And as you can see below, if the hand closes too fast, the momentum will tip the whole thing over!
                 </p>
 
-                <div style="display: flex; justify-content: center; align-items: center; height: 600px; margin: 2em 0;">
-                    <video autoplay loop muted playsinline style="height: 600px; max-width: 100%; object-fit: contain; display: block;">
-                        <source src="../images/hand/Tipping.MOV" type="video/quicktime">
-                        <source src="../images/hand/Tipping.MOV" type="video/mp4">
+                <div style="display: flex; justify-content: center; align-items: center; max-height: 500px; margin: 2em 0;">
+                    <video autoplay loop muted playsinline webkit-playsinline preload="auto" style="max-height: 500px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
+                        <source src="../images/hand/Tipping.mp4" type="video/mp4">
+                        <source src="../images/hand/Tipping.mov" type="video/quicktime">
                     </video>
                 </div>
 
