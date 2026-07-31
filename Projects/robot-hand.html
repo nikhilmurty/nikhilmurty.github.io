@@ -201,9 +201,7 @@
 
                 
 
-                <p> After building up V3, I needed to restructure the control software. In the initial single finger demo, angle commands were sent directly to the motor inside the camera loop. 
-                    Scaling this to a 5 finger hand required a cleaner object oriented architecture. I created <code>Finger</code> objects that encapsulate key motor parameters, min/max angular 
-                    constraints, and mapping functions to convert vision derived finger joint angles into target motor encoder counts. 
+                <p> After getting V3 built, I needed to clean up the control code. In the single finger demo above, I had the camera loop sending angle commands directly to the motor, which got messy fast. Scaling up to a full 5 finger hand required a cleaner object oriented setup. I created <code>Finger</code> objects to store min/max angles and motor data, and built conversion functions to map the hand gesture angles from the camera straight into motor target positions. 
                 </p>
                 
                 <div style="display: flex; justify-content: center; align-items: center; height: 600px; margin: 2em 0;">
@@ -213,9 +211,7 @@
                     </video>
                 </div>
 
-                <p> This introduced another challenge: calibration and tendon pre-tensioning. On startup, the tendon lines are slack and require homing. I implemented a stall based homing 
-                    routine using motor current thresholds. On boot, each motor drives until meeting a current threshold at the mechanical hardstop, tensioning the lines and establishing calibrated min 
-                    and max position limits for angle calculations.
+                <p> Next came tendon slack and calibration. On startup, the strings are loose and the motors need to be homed. I wrote a simple auto tensioning routine that runs on boot: each motor drives until it hits a current threshold (stall limit) at the joint's hardstop. This automatically pulls the tendons taut while recording the calibrated min and max position limits for each finger.
                 </p>
 
                 <div style="display: flex; justify-content: center; align-items: center; height: 600px; margin: 2em 0;">
@@ -225,9 +221,7 @@
                     </video>
                 </div>
 
-                <p> To achieve low-latency multi-actuator control, I upgraded communication to use Dynamixel SDK's <code>GroupSyncRead</code> and <code>GroupSyncWrite</code> commands. This allows cyclic 
-                    packet transfer to all motors in a single bus transaction rather than sequentially querying each ID. I also decoupled system execution into dedicated threads: the image processing thread 
-                    runs MediaPipe tracking to compute desired joint angles and updates the target state, while a high-frequency control thread cyclically dispatches <code>GroupSync</code> write packets to the motors. 
+                <p> To make finger movement much smoother and more responsive, I upgraded the motor communications to use Dynamixel's <code>GroupSyncRead</code> and <code>GroupSyncWrite</code> commands. Instead of messaging each motor sequentially, GroupSync lets me read and write data to all 5 motors in a single batch call. I also split the software into two dedicated threads: one thread runs MediaPipe tracking to process webcam frames and calculate finger target angles, while a separate high frequency control thread continuously syncs target positions with the motors.
                 </p>
 
                 <div style="display: flex; justify-content: center; align-items: center; height: 600px; margin: 2em 0;">
@@ -237,8 +231,7 @@
                     </video>
                 </div>
 
-                <p> To prevent the hand from crushing objects or damaging tendons during contact, I enabled Dynamixel's Current-based Position Control Mode. This provides active compliance (torque limited position 
-                    control): the motors track target trajectories up to a specified current/torque limit, yielding safely when external force is encountered and resuming target position once released.
+                <p> I also wanted the hand to yield if it met resistance so it wouldn't crush objects or snap tendons. To do this, I set the motors to Current based Position Control Mode. The motors will hold their target position until a set current limit is reached, at which point they safely yield to external forces. Once released, they spring right back to their commanded position, giving the hand a nice compliant grip!
                 </p>
 
                 <div style="display: flex; justify-content: center; align-items: center; height: 600px; margin: 2em 0;">
@@ -249,8 +242,7 @@
                 </div>
 
                 <p>
-                    While the overall control performance is solid, there are remaining challenges. The thumb exhibits reduced range of motion—likely due to higher kinematically complex degrees of freedom (DoF) 
-                    coupled with optical landmark self-occlusion in MediaPipe. The pinky finger also requires further gain tuning. Additionally, fast movements can cause the hand to tip over!
+                    There are still a few quirks to solve. The thumb doesn't move as much as I'd like (it has more complex degrees of freedom, and the camera sometimes loses track when fingers overlap). The pinky also needs some fine tuning. And as you can see below, if the hand closes too fast, the momentum will tip the whole thing over!
                 </p>
 
                 <div style="display: flex; justify-content: center; align-items: center; height: 600px; margin: 2em 0;">
