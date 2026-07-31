@@ -60,7 +60,7 @@
                 <h3>The Hand</h3>
                 
                 <div style="text-align: center; margin: 2em 0;">
-                    <span class="image"><img src="../images/hand/drawing_3.jpg" alt="Finger Tension Mechanism Diagram" style="max-height: 250px; width: auto;" /></span>
+                    <span class="image"><img src="../images/hand/drawing_3.jpg" alt="Finger Tension Mechanism Diagram" style="max-height: 250px; width: auto; max-width: 100%;" /></span>
                 </div>
 
                 <p> I decided to go with a tension driven mechanism for the fingers because it seemed cheaper and less complex. The downside is that I won't have a full range of motion for the fingers but at least they will
@@ -71,7 +71,7 @@
                 <h4>V1</h4>
 
                 <div style="text-align: center; margin: 2em 0;">
-                    <span class="image"><img src="../images/hand/drawing_4.jpg" alt="IGUS Linkage Diagram" style="max-height: 300px; width: auto;" /></span>
+                    <span class="image"><img src="../images/hand/drawing_4.jpg" alt="IGUS Linkage Diagram" style="max-height: 300px; width: auto; max-width: 100%;" /></span>
                 </div>
 
                 <p>
@@ -99,7 +99,7 @@
                 <h4>V2</h4>                
                 
                 <div style="text-align: center; margin: 2em 0;">
-                    <span class="image"><img src="../images/hand/drawing2.jpg" alt="V2 Finger Assembly Drawing" style="max-height: 350px; width: auto;" /></span>
+                    <span class="image"><img src="../images/hand/drawing2.jpg" alt="V2 Finger Assembly Drawing" style="max-height: 350px; width: auto; max-width: 100%;" /></span>
                 </div>
 
                 <p>
@@ -107,7 +107,7 @@
                 </p>
 
                 <div style="text-align: center; margin: 2em 0;">
-                    <span class="image"><img src="../images/hand/V2_fingers.jpg" alt="V2 Finger Assembly CAD model" style="max-height: 350px; width: auto;" /></span>
+                    <span class="image"><img src="../images/hand/V2_fingers.jpg" alt="V2 Finger Assembly CAD model" style="max-height: 350px; width: auto; max-width: 100%;" /></span>
                 </div>
 
                 <p>
@@ -120,7 +120,7 @@
 
 
                 <div style="text-align: center; margin: 2em 0;">
-                    <span class="image"><img src="../images/hand/finger.jpg" alt="V2 Physical Finger Assembly" style="max-height: 450px; width: auto;" /></span>
+                    <span class="image"><img src="../images/hand/finger.jpg" alt="V2 Physical Finger Assembly" style="max-height: 450px; width: auto; max-width: 100%;" /></span>
                 </div>
 
                 <p> 
@@ -187,7 +187,7 @@
 
                     The robot control code will also ingest the model results and will first calculate the angle between the tip of the finger and the knuckle of the finger. It does this by calculating the vectors from
                     the wrist to the knuckle and the vector of the knuckle to the finger. Then you calculate the angle between the two using the dot product. This angle is then sent to the dynamixel which then converts
-                    the angle into a robot position and moves the finger. As of now, the controller of finger angle to motor angle needs some work but it does work!
+                    the angle into a robot position and moves the finger.
                 </p>
 
                 <div style="display: flex; justify-content: center; align-items: center; height: 800px; margin: 2em 0;">
@@ -196,6 +196,70 @@
                         <source src="../images/hand/V2_GestureControl.MOV" type="video/mp4">
                     </video>
                 </div>
+
+                <h4>Gesture Control on the Whole Hand</h4>
+
+                
+
+                <p> After building up V3, I needed to restructure the control software. In the initial single finger demo, angle commands were sent directly to the motor inside the camera loop. 
+                    Scaling this to a 5 finger hand required a cleaner object oriented architecture. I created <code>Finger</code> objects that encapsulate key motor parameters, min/max angular 
+                    constraints, and mapping functions to convert vision derived finger joint angles into target motor encoder counts. 
+                </p>
+                
+                <div style="display: flex; justify-content: center; align-items: center; height: 600px; margin: 2em 0;">
+                    <video autoplay loop muted playsinline style="height: 600px; max-width: 100%; object-fit: contain; display: block;">
+                        <source src="../images/hand/PerFinger.mov" type="video/quicktime">
+                        <source src="../images/hand/PerFinger.mov" type="video/mp4">
+                    </video>
+                </div>
+
+                <p> This introduced another challenge: calibration and tendon pre-tensioning. On startup, the tendon lines are slack and require homing. I implemented a stall based homing 
+                    routine using motor current thresholds. On boot, each motor drives until meeting a current threshold at the mechanical hardstop, tensioning the lines and establishing calibrated min 
+                    and max position limits for angle calculations.
+                </p>
+
+                <div style="display: flex; justify-content: center; align-items: center; height: 600px; margin: 2em 0;">
+                    <video autoplay loop muted playsinline style="height: 600px; max-width: 100%; object-fit: contain; display: block;">
+                        <source src="../images/hand/Tensioning.MOV" type="video/quicktime">
+                        <source src="../images/hand/Tensioning.MOV" type="video/mp4">
+                    </video>
+                </div>
+
+                <p> To achieve low-latency multi-actuator control, I upgraded communication to use Dynamixel SDK's <code>GroupSyncRead</code> and <code>GroupSyncWrite</code> commands. This allows cyclic 
+                    packet transfer to all motors in a single bus transaction rather than sequentially querying each ID. I also decoupled system execution into dedicated threads: the image processing thread 
+                    runs MediaPipe tracking to compute desired joint angles and updates the target state, while a high-frequency control thread cyclically dispatches <code>GroupSync</code> write packets to the motors. 
+                </p>
+
+                <div style="display: flex; justify-content: center; align-items: center; height: 600px; margin: 2em 0;">
+                    <video autoplay loop muted playsinline style="height: 600px; max-width: 100%; object-fit: contain; display: block;">
+                        <source src="../images/hand/Random.MOV" type="video/quicktime">
+                        <source src="../images/hand/Random.MOV" type="video/mp4">
+                    </video>
+                </div>
+
+                <p> To prevent the hand from crushing objects or damaging tendons during contact, I enabled Dynamixel's Current-based Position Control Mode. This provides active compliance (torque limited position 
+                    control): the motors track target trajectories up to a specified current/torque limit, yielding safely when external force is encountered and resuming target position once released.
+                </p>
+
+                <div style="display: flex; justify-content: center; align-items: center; height: 600px; margin: 2em 0;">
+                    <video autoplay loop muted playsinline style="height: 600px; max-width: 100%; object-fit: contain; display: block;">
+                        <source src="../images/hand/Backdrive.MOV" type="video/quicktime">
+                        <source src="../images/hand/Backdrive.MOV" type="video/mp4">
+                    </video>
+                </div>
+
+                <p>
+                    While the overall control performance is solid, there are remaining challenges. The thumb exhibits reduced range of motion—likely due to higher kinematically complex degrees of freedom (DoF) 
+                    coupled with optical landmark self-occlusion in MediaPipe. The pinky finger also requires further gain tuning. Additionally, fast movements can cause the hand to tip over!
+                </p>
+
+                <div style="display: flex; justify-content: center; align-items: center; height: 600px; margin: 2em 0;">
+                    <video autoplay loop muted playsinline style="height: 600px; max-width: 100%; object-fit: contain; display: block;">
+                        <source src="../images/hand/Tipping.MOV" type="video/quicktime">
+                        <source src="../images/hand/Tipping.MOV" type="video/mp4">
+                    </video>
+                </div>
+
 
                 </div>
             </section>
