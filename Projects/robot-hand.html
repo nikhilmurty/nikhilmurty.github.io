@@ -52,10 +52,6 @@
                         decided to learn how they work by trying to make one of my own (to a much simpler degree of course). As for controlling it, I decided I wanted to map my own hand gestures to control the robot hand.
                     </p>
 
-                    <p>
-                        DISCLAIMER: This project is still a work in progress, but I have made some decent steps forward so I thought I'd share it here. I will continue to update this as I make more progress!
-                    </p>
-
                 <hr />
                 <h3>The Hand</h3>
                 
@@ -63,8 +59,9 @@
                     <span class="image"><img src="../images/hand/drawing_3.jpg" alt="Finger Tension Mechanism Diagram" style="max-height: 250px; width: auto; max-width: 100%;" /></span>
                 </div>
 
-                <p> I decided to go with a tension driven mechanism for the fingers because it seemed cheaper and less complex. The downside is that I won't have a full range of motion for the fingers but at least they will
-                    be able to grab things. It would be cool to have individual motors for each segment, but that would be incredibly expensive. It would be fun to try though...
+                <p> I decided to go with a tension driven mechanism for the fingers. This was to keep the fingers lighter and more compliant versus increasing the weight with motors on each joint. I also decided to make the 
+                    fingers underactuated by having 1 motor per finger. This is because the fingers will then automatically conform to the object they are touching instead of needing to worry about extra control for each joint.
+                    The downside is that the hand won't have as many degrees of freedom as a human hand, but that is a tradeoff I was willing to make for a simpler design. 
                 </p> 
 
 
@@ -261,9 +258,11 @@
         <footer id="footer">
             <ul class="icons">
                 <li><a href="https://www.linkedin.com/in/nikhil-murty" target="_blank"
-                        style="font-size: 18px;">LinkedIn</a></li>
-                <li><a href="https://github.com/nikhilmurty" target="_blank" style="font-size: 18px;">GitHub</a></li>
-                <li><a href="mailto:nikhilsanjaymurty@gmail.com" style="font-size: 18px;">Email</a></li>
+                        class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                <li><a href="https://github.com/nikhilmurty" target="_blank" class="icon brands fa-github"><span
+                            class="label">GitHub</span></a></li>
+                <li><a href="mailto:nikhilsanjaymurty@gmail.com" class="icon solid fa-envelope"><span
+                            class="label">Email</span></a></li>
             </ul>
         </footer>
 
