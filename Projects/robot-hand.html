@@ -42,213 +42,328 @@
             <section class="wrapper style4">
                 <div class="inner">
                     <h3>Background</h3>
-                    <p>I have always been interested in how our hands work. It is insane to me that we can do anything from working in a construction site to performing brain surgery, all with the same hands.
-                       This interest is actually why I majored in Biomedical Engineering, I wanted to learn how the human body works and how we can use that understanding to improve people's lives. During my time at
-                       Johns Hopkins, I worked a lot on devices to understand how our hands felt things as well as how to improve hand function. I have posted some of these in my projects section. Unfortunately, there
-                       wasn't much of a career in prosthetics when I graduated, so I started working in my second field of interest: surgical robotics. 
+                    <p>I have always been interested in how our hands work. It is insane to me that we can do anything
+                        from working in a construction site to performing brain surgery, all with the same hands.
+                        This interest is actually why I majored in Biomedical Engineering, I wanted to learn how the
+                        human body works and how we can use that understanding to improve people's lives. During my time
+                        at
+                        Johns Hopkins, I worked a lot on devices to understand how our hands felt things as well as how
+                        to improve hand function. I have posted some of these in my projects section. Unfortunately,
+                        there
+                        wasn't much of a career in prosthetics when I graduated, so I started working in my second field
+                        of interest: surgical robotics.
                     </p>
 
-                    <p> However, with the dawn of humanoid robotics and AI recently, I started thinking about robotic hands again. It seems like every one of these humanoid robots has some very dextrous hands and I
-                        decided to learn how they work by trying to make one of my own (to a much simpler degree of course). As for controlling it, I decided I wanted to map my own hand gestures to control the robot hand.
+                    <p> However, with the dawn of humanoid robotics and AI recently, I started thinking about robotic
+                        hands again. It seems like every one of these humanoid robots has some very dextrous hands and I
+                        decided to learn how they work by trying to make one of my own (to a much simpler degree of
+                        course). As for controlling it, I decided I wanted to map my own hand gestures to control the
+                        robot hand.
                     </p>
 
-                <hr />
-                <h3>The Hand</h3>
-                
-                <div style="text-align: center; margin: 2em 0;">
-                    <span class="image"><img src="../images/hand/drawing_3.jpg" alt="Finger Tension Mechanism Diagram" style="max-height: 250px; width: auto; max-width: 100%;" /></span>
-                </div>
+                    <hr />
+                    <h3>The Hand</h3>
 
-                <p> I decided to go with a tension driven mechanism for the fingers. This was to keep the fingers lighter and more compliant versus increasing the weight with motors on each joint. I also decided to make the 
-                    fingers underactuated by having 1 motor per finger. This is because the fingers will then automatically conform to the object they are touching instead of needing to worry about extra control for each joint.
-                    The downside is that the hand won't have as many degrees of freedom as a human hand, but that is a tradeoff I was willing to make for a simpler design. 
-                </p> 
-
-
-                <h4>V1</h4>
-
-                <div style="text-align: center; margin: 2em 0;">
-                    <span class="image"><img src="../images/hand/drawing_4.jpg" alt="IGUS Linkage Diagram" style="max-height: 300px; width: auto; max-width: 100%;" /></span>
-                </div>
-
-                <p>
-                    V1 started with the idea of linking the finger segments together using a snap-fit interlocking pin joint, similar to how an IGUS e-chain carrier works for its linkages. This was designed for an easy build since
-                    it didn't require any additional screws, pins, or fasteners. 
-                </p>
-
-                <div class="row gtr-50" style="margin: 2em 0;">
-                    <div class="col-6">
-                        <img src="../images/hand/V1_assembly.jpg" alt="V1 Assembly" class="autosize-media" />
+                    <div style="text-align: center; margin: 2em 0;">
+                        <span class="image"><img src="../images/hand/drawing_3.jpg"
+                                alt="Finger Tension Mechanism Diagram"
+                                style="max-height: 250px; width: auto; max-width: 100%;" /></span>
                     </div>
-                    <div class="col-6">
-                        <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="autosize-media">
-                            <source src="../images/hand/V1_vid.mp4" type="video/mp4">
-                            <source src="../images/hand/V1_vid.MOV" type="video/quicktime">
+
+                    <p> I decided to go with a tension driven mechanism for the fingers. This was to keep the fingers
+                        lighter and more compliant versus increasing the weight with motors on each joint. I also
+                        decided to make the
+                        fingers underactuated by having 1 motor per finger. This is because the fingers will then
+                        automatically conform to the object they are touching instead of needing to worry about extra
+                        control for each joint.
+                        The downside is that the hand won't have as many degrees of freedom as a human hand, but that is
+                        a tradeoff I was willing to make for a simpler design.
+                    </p>
+
+
+                    <h4>V1</h4>
+
+                    <div style="text-align: center; margin: 2em 0;">
+                        <span class="image"><img src="../images/hand/drawing_4.jpg" alt="IGUS Linkage Diagram"
+                                style="max-height: 300px; width: auto; max-width: 100%;" /></span>
+                    </div>
+
+                    <p>
+                        V1 started with the idea of linking the finger segments together using a snap-fit interlocking
+                        pin joint, similar to how an IGUS e-chain carrier works for its linkages. This was designed for
+                        an easy build since
+                        it didn't require any additional screws, pins, or fasteners.
+                    </p>
+
+                    <div class="row gtr-50" style="margin: 2em 0;">
+                        <div class="col-6">
+                            <img src="../images/hand/V1_assembly.jpg" alt="V1 Assembly" class="autosize-media" />
+                        </div>
+                        <div class="col-6">
+                            <video autoplay loop muted playsinline webkit-playsinline preload="auto"
+                                class="autosize-media">
+                                <source src="../images/hand/V1_vid.mp4" type="video/mp4">
+                                <source src="../images/hand/V1_vid.MOV" type="video/quicktime">
+                            </video>
+                        </div>
+                    </div>
+
+                    <p>
+                        Unfortunately, this snap fit joint introduced a lot of friction to the system. The motor could
+                        barely move it and motion wasn't as smooth as I hoped. Also, pressing the linkages together
+                        sometimes led to
+                        the plastic cracking and/or snapping. The prints also would sometimes come out a little warped,
+                        so the mating features would not fit together well, leading to the joints being weak and harder
+                        to move.
+                    </p>
+
+                    <h4>V2</h4>
+
+                    <div style="text-align: center; margin: 2em 0;">
+                        <span class="image"><img src="../images/hand/drawing2.jpg" alt="V2 Finger Assembly Drawing"
+                                style="max-height: 350px; width: auto; max-width: 100%;" /></span>
+                    </div>
+
+                    <p>
+                        I went back to the drawing board for V2, purchasing some small bearings and pins for this
+                        iteration. Although working with small bearings can be tedious, a pack of 10 was inexpensive on
+                        Amazon. I replaced the snap-fit joint with holes designed to slot a 5mm dowel pin through and
+                        made cutouts to press-fit a small 8mm OD bearing.
+                    </p>
+
+                    <div style="text-align: center; margin: 2em 0;">
+                        <span class="image"><img src="../images/hand/V2_fingers.jpg" alt="V2 Finger Assembly CAD model"
+                                style="max-height: 350px; width: auto; max-width: 100%;" /></span>
+                    </div>
+
+                    <p>
+                        I also decided to add hardstops to this version, which were placed at each linkage point. This
+                        would allow the fingers to go back to their straight position when we add the spring tensioner.
+                        Speaking of
+                        which, I added two M3 through holes at the tips of the finger. One hole was for the driving
+                        mechanism, which would allow for the tendon to loop around it. When the tendon was pulled, this
+                        would allow for the finger
+                        to close. The other hole was another M3 through hole but this time, it was meant for the spring
+                        + tendon mechanism that would pull the fingers back to the open finger position. These all then
+                        attached to
+                        a mount with a Dynamixel XL330 servo with a spool attached to it.
+                    </p>
+
+
+
+                    <div style="text-align: center; margin: 2em 0;">
+                        <span class="image"><img src="../images/hand/finger.jpg" alt="V2 Physical Finger Assembly"
+                                style="max-height: 450px; width: auto; max-width: 100%;" /></span>
+                    </div>
+
+                    <p>
+                        Almost immediately, the motion on this version felt smoother. Pressing the small bearings into
+                        their receptacles was a pain, but once I got the hang of it, it got better.
+                    </p>
+
+                    <h4>V3: The Whole Hand</h4>
+
+                    <p>
+                        Now it is time to start building out a whole hand! Using what I learned from V2, I strengthened
+                        the fingers a bit by making the center channels smaller, thereby adding more wall strength to
+                        each finger.
+                        I then designed a palm to connect all the fingers to and created the different finger sizes
+                        using Onshape's configuration tool. I also fleshed out the spools a little more so that they are
+                        easier to attach
+                        to the motors. There are some cutouts on the back of the hand so that the motor cables could be
+                        routed and interconnected. The motors had to be placed as they are to prevent any interference
+                        between cables
+                        for different fingers. There is a lot of open space in the palm so hopefully we can insert the
+                        RB-150 controller or power supply into this section.
+                    </p>
+
+                    <div class="row gtr-50" style="margin: 2em 0;">
+                        <div class="col-6">
+                            <img src="../images/hand/V3_open.jpg" alt="V3 Hand Open" class="autosize-media" />
+                        </div>
+                        <div class="col-6">
+                            <img src="../images/hand/V3_Closed.jpg" alt="V3 Hand Closed" class="autosize-media" />
+                        </div>
+                    </div>
+
+                    <p>
+                        Printing these parts took a bit of effort. The fingers would usually need support material for
+                        printing them, which made post processing annoying but doable. I had to just use a drill and
+                        blade to clean up every
+                        print. Tensioning the springs was also a little annoying but I was able to loop the tendons
+                        around the screws in the tip of each finger. Tightening the screw would also pull on the spring
+                        and would then tension
+                        the spring.
+                    </p>
+
+                    <div class="row gtr-50" style="margin: 2em 0;">
+                        <div class="col-6">
+                            <img src="../images/hand/V3_Front.jpeg" alt="V3 Hand Front" class="autosize-media" />
+                        </div>
+                        <div class="col-6">
+                            <img src="../images/hand/V3_Back.jpeg" alt="V3 Hand Back" class="autosize-media" />
+                        </div>
+                    </div>
+
+                    <hr />
+                    <h3>The Controller</h3>
+
+                    <h4>Initial Idea: EMG sensors</h4>
+                    <p> I originally wanted to use a Myo armband that I had lying around to control the robot hand. In
+                        college, there was a lab where I got to control a virtual hand using the Myo and it was really
+                        cool!
+                        However, the Myo I owned had been collecting dust for too long, and when I tried to boot it up,
+                        the battery was dead and I was missing the USB dongle to wirelessly control it. To make things
+                        worse,
+                        I tried to take it apart as a final Hail Mary to see if I could replace the battery, but I ended
+                        up breaking the communication cable. Since the company has been defunct for some time, that was
+                        the
+                        end of my Myo band :(
+                    </p>
+
+                    <div
+                        style="display: flex; justify-content: center; align-items: center; height: 300px; margin: 2em 0;">
+                        <img src="../images/hand/myo.jpg" alt="Myo Armband"
+                            style="transform: rotate(-90deg); height: 400px; max-width: 100%; object-fit: contain;" />
+                    </div>
+
+                    <h4>Pivot: Hand Gesture Tracking via Webcam</h4>
+
+                    <p> This led me to the idea of using gesture controls with a video camera. I've worked with OpenCV a
+                        bunch and I've seen how good hand models are at estimating hand and finger positions, so I
+                        thought
+                        it would be cool to use the camera to control the hand. I decided to go with Google's MediaPipe
+                        for the hand tracking because it was fairly lightweight and very responsive (around 15ms per
+                        frame).
+                    </p>
+
+                    <p>
+                        I then wrote the software to handle the gesture tracking and also handle the robot control. The
+                        gesture tracking works by having an image capture and processing thread, image + hand overlay
+                        thread,
+                        and robot control thread. The image processing thread will take a frame using OpenCV's
+                        VideoCapture class and run the frame through the MediaPipe Hands model. The model will output a
+                        result that will
+                        be used by both the robot controller thread and the display function. The display function will
+                        use the results to overlay the hand connection points onto the hand in the video.
+
+                        The robot control code will also ingest the model results and will first calculate the angle
+                        between the tip of the finger and the knuckle of the finger. It does this by calculating the
+                        vectors from
+                        the wrist to the knuckle and the vector of the knuckle to the finger. Then you calculate the
+                        angle between the two using the dot product. This angle is then sent to the dynamixel which then
+                        converts
+                        the angle into a robot position and moves the finger.
+                    </p>
+
+                    <div
+                        style="display: flex; justify-content: center; align-items: center; max-height: 600px; margin: 2em 0;">
+                        <video autoplay loop muted playsinline webkit-playsinline preload="auto"
+                            style="max-height: 600px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
+                            <source src="../images/hand/V2_GestureControl.mp4" type="video/mp4">
+                            <source src="../images/hand/V2_GestureControl.MOV" type="video/quicktime">
                         </video>
                     </div>
-                </div>
 
-                <p>
-                    Unfortunately, this snap fit joint introduced a lot of friction to the system. The motor could barely move it and motion wasn't as smooth as I hoped. Also, pressing the linkages together sometimes led to 
-                    the plastic cracking and/or snapping. The prints also would sometimes come out a little warped, so the mating features would not fit together well, leading to the joints being weak and harder to move.
-                </p> 
-
-                <h4>V2</h4>                
-                
-                <div style="text-align: center; margin: 2em 0;">
-                    <span class="image"><img src="../images/hand/drawing2.jpg" alt="V2 Finger Assembly Drawing" style="max-height: 350px; width: auto; max-width: 100%;" /></span>
-                </div>
-
-                <p>
-                    I went back to the drawing board for V2, purchasing some small bearings and pins for this iteration. Although working with small bearings can be tedious, a pack of 10 was inexpensive on Amazon. I replaced the snap-fit joint with holes designed to slot a 5mm dowel pin through and made cutouts to press-fit a small 8mm OD bearing. 
-                </p>
-
-                <div style="text-align: center; margin: 2em 0;">
-                    <span class="image"><img src="../images/hand/V2_fingers.jpg" alt="V2 Finger Assembly CAD model" style="max-height: 350px; width: auto; max-width: 100%;" /></span>
-                </div>
-
-                <p>
-                    I also decided to add hardstops to this version, which were placed at each linkage point. This would allow the fingers to go back to their straight position when we add the spring tensioner. Speaking of
-                    which, I added two M3 through holes at the tips of the finger. One hole was for the driving mechanism, which would allow for the tendon to loop around it. When the tendon was pulled, this would allow for the finger
-                    to close. The other hole was another M3 through hole but this time, it was meant for the spring + tendon mechanism that would pull the fingers back to the open finger position. These all then attached to
-                    a mount with a Dynamixel XL330 servo with a spool attached to it. 
-                </p>
+                    <h4>Gesture Control on the Whole Hand</h4>
 
 
 
-                <div style="text-align: center; margin: 2em 0;">
-                    <span class="image"><img src="../images/hand/finger.jpg" alt="V2 Physical Finger Assembly" style="max-height: 450px; width: auto; max-width: 100%;" /></span>
-                </div>
+                    <p> After getting V3 built, I needed to clean up the control code. In the single finger demo above,
+                        I had the camera loop sending angle commands directly to the motor, which got messy fast.
+                        Scaling up to a full 5 finger hand required a cleaner object oriented setup. I created
+                        <code>Finger</code> objects to store min/max angles and motor data, and built conversion
+                        functions to map the hand gesture angles from the camera straight into motor target positions.
+                    </p>
 
-                <p> 
-                    Almost immediately, the motion on this version felt smoother. Pressing the small bearings into their receptacles was a pain, but once I got the hang of it, it got better. 
-                </p>
-
-                <h4>V3: The Whole Hand</h4> 
-
-                <p>
-                    Now it is time to start building out a whole hand! Using what I learned from V2, I strengthened the fingers a bit by making the center channels smaller, thereby adding more wall strength to each finger.
-                    I then designed a palm to connect all the fingers to and created the different finger sizes using Onshape's configuration tool. I also fleshed out the spools a little more so that they are easier to attach
-                    to the motors. There are some cutouts on the back of the hand so that the motor cables could be routed and interconnected. The motors had to be placed as they are to prevent any interference between cables
-                    for different fingers. There is a lot of open space in the palm so hopefully we can insert the RB-150 controller or power supply into this section. 
-                </p>
-
-                <div class="row gtr-50" style="margin: 2em 0;">
-                    <div class="col-6">
-                        <img src="../images/hand/V3_open.jpg" alt="V3 Hand Open" class="autosize-media" />
+                    <div
+                        style="display: flex; justify-content: center; align-items: center; max-height: 500px; margin: 2em 0;">
+                        <video autoplay loop muted playsinline webkit-playsinline preload="auto"
+                            style="max-height: 500px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
+                            <source src="../images/hand/PerFinger.mp4" type="video/mp4">
+                            <source src="../images/hand/PerFinger.mov" type="video/quicktime">
+                        </video>
                     </div>
-                    <div class="col-6">
-                        <img src="../images/hand/V3_Closed.jpg" alt="V3 Hand Closed" class="autosize-media" />
+
+                    <p> Next came tendon slack and calibration. On startup, the strings are loose and the motors need to
+                        be homed. I wrote a simple auto tensioning routine that runs on boot: each motor drives until it
+                        hits a current threshold (stall limit) at the joint's hardstop. This automatically pulls the
+                        tendons taut while recording the calibrated min and max position limits for each finger.
+                    </p>
+
+                    <div
+                        style="display: flex; justify-content: center; align-items: center; max-height: 500px; margin: 2em 0;">
+                        <video autoplay loop muted playsinline webkit-playsinline preload="auto"
+                            style="max-height: 500px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
+                            <source src="../images/hand/Tensioning.mp4" type="video/mp4">
+                            <source src="../images/hand/Tensioning.MOV" type="video/quicktime">
+                        </video>
                     </div>
-                </div>
 
-                <p>
-                    Printing these parts took a bit of effort. The fingers would usually need support material for printing them, which made post processing annoying but doable. I had to just use a drill and blade to clean up every
-                    print. Tensioning the springs was also a little annoying but I was able to loop the tendons around the screws in the tip of each finger. Tightening the screw would also pull on the spring and would then tension
-                    the spring. 
-                </p>
+                    <p> To make finger movement much smoother and more responsive, I upgraded the motor communications
+                        to use Dynamixel's <code>GroupSyncRead</code> and <code>GroupSyncWrite</code> commands. Instead
+                        of messaging each motor sequentially, GroupSync lets me read and write data to all 5 motors in a
+                        single batch call. I also split the software into two dedicated threads: one thread runs
+                        MediaPipe tracking to process webcam frames and calculate finger target angles, while a separate
+                        high frequency control thread continuously syncs target positions with the motors.
+                    </p>
 
-                <div class="row gtr-50" style="margin: 2em 0;">
-                    <div class="col-6">
-                        <img src="../images/hand/V3_Front.jpeg" alt="V3 Hand Front" class="autosize-media" />
+                    <div
+                        style="display: flex; justify-content: center; align-items: center; max-height: 500px; margin: 2em 0;">
+                        <video autoplay loop muted playsinline webkit-playsinline preload="auto"
+                            style="max-height: 500px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
+                            <source src="../images/hand/Random.mp4" type="video/mp4">
+                            <source src="../images/hand/Random.MOV" type="video/quicktime">
+                        </video>
                     </div>
-                    <div class="col-6">
-                        <img src="../images/hand/V3_Back.jpeg" alt="V3 Hand Back" class="autosize-media" />
+
+                    <p> I also wanted the hand to yield if it met resistance so it wouldn't crush objects or snap
+                        tendons. To do this, I set the motors to Current based Position Control Mode. The motors will
+                        hold their target position until a set current limit is reached, at which point they safely
+                        yield to external forces. Once released, they spring right back to their commanded position,
+                        giving the hand a nice compliant grip!
+                    </p>
+
+                    <div
+                        style="display: flex; justify-content: center; align-items: center; max-height: 500px; margin: 2em 0;">
+                        <video autoplay loop muted playsinline webkit-playsinline preload="auto"
+                            style="max-height: 500px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
+                            <source src="../images/hand/Backdrive.mp4" type="video/mp4">
+                            <source src="../images/hand/Backdrive.mov" type="video/quicktime">
+                        </video>
                     </div>
-                </div>
 
-                <hr />
-                <h3>The Controller</h3>
+                    <p>
+                        There are still a few quirks to solve. The thumb doesn't move as much as I'd like (it has more
+                        complex degrees of freedom, and the camera sometimes loses track when fingers overlap). The
+                        pinky also needs some fine tuning. And as you can see below, if the hand closes too fast, the
+                        momentum will tip the whole thing over!
+                    </p>
 
-                <h4>Initial Idea: EMG sensors</h4>  
-                <p> I originally wanted to use a Myo armband that I had lying around to control the robot hand. In college, there was a lab where I got to control a virtual hand using the Myo and it was really cool!
-                     However, the Myo I owned had been collecting dust for too long, and when I tried to boot it up, the battery was dead and I was missing the USB dongle to wirelessly control it. To make things worse,
-                     I tried to take it apart as a final Hail Mary to see if I could replace the battery, but I ended up breaking the communication cable. Since the company has been defunct for some time, that was the 
-                     end of my Myo band :(
-                </p> 
+                    <div
+                        style="display: flex; justify-content: center; align-items: center; max-height: 500px; margin: 2em 0;">
+                        <video autoplay loop muted playsinline webkit-playsinline preload="auto"
+                            style="max-height: 500px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
+                            <source src="../images/hand/Tipping.mp4" type="video/mp4">
+                            <source src="../images/hand/Tipping.mov" type="video/quicktime">
+                        </video>
+                    </div>
 
-                <div style="display: flex; justify-content: center; align-items: center; height: 300px; margin: 2em 0;">
-                    <img src="../images/hand/myo.jpg" alt="Myo Armband" style="transform: rotate(-90deg); height: 400px; max-width: 100%; object-fit: contain;" />
-                </div>
-
-                <h4>Pivot: Hand Gesture Tracking via Webcam</h4> 
-
-                <p> This led me to the idea of using gesture controls with a video camera. I've worked with OpenCV a bunch and I've seen how good hand models are at estimating hand and finger positions, so I thought
-                    it would be cool to use the camera to control the hand. I decided to go with Google's MediaPipe for the hand tracking because it was fairly lightweight and very responsive (around 15ms per frame). 
-                </p>
-                
-                <p>
-                    I then wrote the software to handle the gesture tracking and also handle the robot control. The gesture tracking works by having an image capture and processing thread,  image + hand overlay thread,
-                    and robot control thread. The image processing thread will take a frame using OpenCV's VideoCapture class and run the frame through the MediaPipe Hands model. The model will output a result that will
-                    be used by both the robot controller thread and the display function. The display function will use the results to overlay the hand connection points onto the hand in the video. 
-
-                    The robot control code will also ingest the model results and will first calculate the angle between the tip of the finger and the knuckle of the finger. It does this by calculating the vectors from
-                    the wrist to the knuckle and the vector of the knuckle to the finger. Then you calculate the angle between the two using the dot product. This angle is then sent to the dynamixel which then converts
-                    the angle into a robot position and moves the finger.
-                </p>
-
-                <div style="display: flex; justify-content: center; align-items: center; max-height: 600px; margin: 2em 0;">
-                    <video autoplay loop muted playsinline webkit-playsinline preload="auto" style="max-height: 600px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
-                        <source src="../images/hand/V2_GestureControl.mp4" type="video/mp4">
-                        <source src="../images/hand/V2_GestureControl.MOV" type="video/quicktime">
-                    </video>
-                </div>
-
-                <h4>Gesture Control on the Whole Hand</h4>
-
-                
-
-                <p> After getting V3 built, I needed to clean up the control code. In the single finger demo above, I had the camera loop sending angle commands directly to the motor, which got messy fast. Scaling up to a full 5 finger hand required a cleaner object oriented setup. I created <code>Finger</code> objects to store min/max angles and motor data, and built conversion functions to map the hand gesture angles from the camera straight into motor target positions. 
-                </p>
-                
-                <div style="display: flex; justify-content: center; align-items: center; max-height: 500px; margin: 2em 0;">
-                    <video autoplay loop muted playsinline webkit-playsinline preload="auto" style="max-height: 500px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
-                        <source src="../images/hand/PerFinger.mp4" type="video/mp4">
-                        <source src="../images/hand/PerFinger.mov" type="video/quicktime">
-                    </video>
-                </div>
-
-                <p> Next came tendon slack and calibration. On startup, the strings are loose and the motors need to be homed. I wrote a simple auto tensioning routine that runs on boot: each motor drives until it hits a current threshold (stall limit) at the joint's hardstop. This automatically pulls the tendons taut while recording the calibrated min and max position limits for each finger.
-                </p>
-
-                <div style="display: flex; justify-content: center; align-items: center; max-height: 500px; margin: 2em 0;">
-                    <video autoplay loop muted playsinline webkit-playsinline preload="auto" style="max-height: 500px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
-                        <source src="../images/hand/Tensioning.mp4" type="video/mp4">
-                        <source src="../images/hand/Tensioning.MOV" type="video/quicktime">
-                    </video>
-                </div>
-
-                <p> To make finger movement much smoother and more responsive, I upgraded the motor communications to use Dynamixel's <code>GroupSyncRead</code> and <code>GroupSyncWrite</code> commands. Instead of messaging each motor sequentially, GroupSync lets me read and write data to all 5 motors in a single batch call. I also split the software into two dedicated threads: one thread runs MediaPipe tracking to process webcam frames and calculate finger target angles, while a separate high frequency control thread continuously syncs target positions with the motors.
-                </p>
-
-                <div style="display: flex; justify-content: center; align-items: center; max-height: 500px; margin: 2em 0;">
-                    <video autoplay loop muted playsinline webkit-playsinline preload="auto" style="max-height: 500px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
-                        <source src="../images/hand/Random.mp4" type="video/mp4">
-                        <source src="../images/hand/Random.MOV" type="video/quicktime">
-                    </video>
-                </div>
-
-                <p> I also wanted the hand to yield if it met resistance so it wouldn't crush objects or snap tendons. To do this, I set the motors to Current based Position Control Mode. The motors will hold their target position until a set current limit is reached, at which point they safely yield to external forces. Once released, they spring right back to their commanded position, giving the hand a nice compliant grip!
-                </p>
-
-                <div style="display: flex; justify-content: center; align-items: center; max-height: 500px; margin: 2em 0;">
-                    <video autoplay loop muted playsinline webkit-playsinline preload="auto" style="max-height: 500px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
-                        <source src="../images/hand/Backdrive.mp4" type="video/mp4">
-                        <source src="../images/hand/Backdrive.mov" type="video/quicktime">
-                    </video>
-                </div>
-
-                <p>
-                    There are still a few quirks to solve. The thumb doesn't move as much as I'd like (it has more complex degrees of freedom, and the camera sometimes loses track when fingers overlap). The pinky also needs some fine tuning. And as you can see below, if the hand closes too fast, the momentum will tip the whole thing over!
-                </p>
-
-                <div style="display: flex; justify-content: center; align-items: center; max-height: 500px; margin: 2em 0;">
-                    <video autoplay loop muted playsinline webkit-playsinline preload="auto" style="max-height: 500px; width: auto; max-width: 100%; height: auto; object-fit: contain; display: block;">
-                        <source src="../images/hand/Tipping.mp4" type="video/mp4">
-                        <source src="../images/hand/Tipping.mov" type="video/quicktime">
-                    </video>
-                </div>
-
+                    <hr />
+                    <h3>Code & Hardware Files</h3>
+                    <p>
+                        I have added all the code and hardware files needed to recreate this project on GitHub. If you
+                        also want to check out the CAD,
+                        I have also included the link to the Onshape part studio.
+                    </p>
+                    <ul class="actions">
+                        <li><a href="https://github.com/nikhilmurty/robot-hand" target="_blank"
+                                class="button primary icon brands fa-github">View Repository</a></li>
+                        <li><a href="https://cad.onshape.com/documents/e974f0bc1062bd7b6ade647d/w/e4fd7f55056d36383327a202/e/fd9bded8c1b01162ac553002?renderMode=0&uiState=6a78ed1a4d117d7ebd74ba09"
+                                target="_blank" class="button onshape icon solid fa-cube"
+                                style="background-color: #00A859; color: #ffffff !important; box-shadow: none;">Onshape
+                                CAD Model</a></li>
+                    </ul>
 
                 </div>
             </section>
